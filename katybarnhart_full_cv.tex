@@ -1,0 +1,730 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the `{\tiny }`??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+\RequirePackage[T1]{fontenc}
+
+% LaTeX will typeset using Computer Modern Roman, which a lot of
+% non-mathematicians and non-engineers won't like. Also, a few PDF
+% viewers may not render CMR very well. Instead, Times New Roman can
+% be used. That's what this package does.
+\usepackage{times}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+% (NOTE: This requires the times package above)
+%\renewcommand{\familydefault}{\sfdefault}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+
+% This package helps LaTeX auto-hyphenate hyphenated words if you use
+% special hyphens. For example, bio\-/mimicry will properly hyphenate
+% ``mimicry'' if necessary.
+\usepackage[shortcuts]{extdash}
+
+
+\usepackage{comment}
+\usepackage{array}
+\usepackage{booktabs}
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+% Provides special list environments and macros to create new ones
+\usepackage[shortlabels]{enumitem}
+
+%%%%%%%%% Simpler refsections for CV sections
+%%%%%%%%% (thanks to natbib for inspiration)
+%%%%%%%%%
+%%%%%%%%% * For lists of references with hanging indents and no numbers:
+%%%%%%%%%
+%%%%%%%%%   \begin{refsection}
+%%%%%%%%%       \item ...
+%%%%%%%%%   \end{refsection}
+%%%%%%%%%
+%%%%%%%%% * For numbered lists of references (with hanging indents):
+%%%%%%%%%
+%%%%%%%%%   \begin{bibenum}
+%%%%%%%%%       \item ...
+%%%%%%%%%   \end{bibenum}
+%%%%%%%%%
+%%%%%%%%%   Note that bibenum numbers continuously throughout. To reset the
+%%%%%%%%%   counter, use
+%%%%%%%%%
+%%%%%%%%%   \restartlist{bibenum}
+%%%%%%%%%
+%%%%%%%%%   at the place where you want the numbering to reset.
+%%%%%%%%
+%%%%%%%%\makeatletter
+%%%%%%%%\newlength{\bibhang}
+%%%%%%%%\setlength{\bibhang}{1em}
+%%%%%%%%\newlength{\bibsep}
+%%%%%%%% {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+%%%%%%%%\newlist{refsection}{itemize}{3}
+%%%%%%%%\setlist[refsection]{label=,leftmargin=\bibhang,%
+%%%%%%%%        itemindent=-\bibhang,
+%%%%%%%%        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+%%%%%%%%        topsep=0pt}
+%%%%%%%%\newlist{bibenum}{enumerate}{3}
+%%%%%%%%\setlist[bibenum]{label=[\arabic*],resume,leftmargin={\bibhang+\widthof{[999]}},%
+%%%%%%%%        itemindent=-\bibhang,
+%%%%%%%%        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+%%%%%%%%        topsep=0pt}
+%%%%%%%%\let\oldendbibenum\endbibenum
+%%%%%%%%\def\endbibenum{\oldendbibenum\vspace{-.6\baselineskip}}
+%%%%%%%%\let\oldendrefsection\endrefsection
+%%%%%%%%\def\endrefsection{\oldendrefsection\vspace{-.6\baselineskip}}
+%%%%%%%%\makeatother
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{datetime}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+%\lfoot{%\hspace{\footpageshift}%
+%       %\parbox{4in}{\, \hfill %
+%                    \arabic{page} of \protect\pageref*{LastPage} 
+%                    CV updated \today % +LP
+%%                    \arabic{page}                               % -LP
+%                    \hfill \,}}
+
+\lfoot{Page \arabic{page} of \protect\pageref*{LastPage} -- CV updated \today}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% HEADING AT TOP OF CURRICULUM VITAE
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[{\includegraphics[height=1.5in]{my_picture}}]{Your Name}
+%
+% the picture will be flush right across from the name. For this example
+% to work, make sure the extra set of curly braces is included. Also
+% makes ure that \usepackage{graphicx} is somewhere in the preamble.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+%%% SECTION HEADINGS
+
+% The section headings. Flush left in small caps down pseudo-margin.
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\large\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+% The subsection headings. Flush left in small caps down pseudo-margin.
+%
+% Usage: \section{section name}
+\renewcommand{\subsection}[1]{\pagebreak[3]%
+	\vspace{1.3\baselineskip}%
+	\phantomsection\addcontentsline{toc}{section}{#1}%
+	\noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
+	\vspace{-\baselineskip}\par}
+
+%%% LISTS
+
+% This macro alters a list by removing some of the space that follows the list
+% (is used by lists below)
+\newcommand*\fixendlist[1]{%
+    \expandafter\let\csname preFixEndListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixEndListend#1\endcsname\vspace{-0.6\baselineskip}}}
+
+% These macros help ensure that items in outer-type lists do not get
+% separated from the next line by a page break
+% (they are used by lists below)
+\let\originalItem\item
+\newcommand*\fixouterlist[1]{%
+    \expandafter\let\csname preFixOuterList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\csname preFixOuterList#1\endcsname\let\oldItem\item\def\item{\pagebreak[2]\oldItem}}
+    \expandafter\let\csname preFixOuterListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\let\item\oldItem\csname preFixOuterListend#1\endcsname}}
+\newcommand*\fixinnerlist[1]{%
+    \expandafter\let\csname preFixInnerList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\let\item\originalItem\csname preFixInnerList#1\endcsname}
+    \expandafter\let\csname preFixInnerListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixInnerListend#1\endcsname\let\item\oldItem}}
+
+% An itemize-style list with lots of space between items
+%
+% Usage:
+%   \begin{outerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{outerlist}
+\newlist{outerlist}{itemize}{3}
+    \setlist[outerlist]{label=\enskip\textbullet,leftmargin=*}
+    \fixendlist{outerlist}
+    \fixouterlist{outerlist}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{lonelist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{lonelist}
+\newlist{lonelist}{itemize}{3}
+    \setlist[lonelist]{label=\enskip\textbullet,leftmargin=*,partopsep=0pt,topsep=0pt}
+    \fixendlist{lonelist}
+    \fixouterlist{lonelist}
+
+% An itemize-style list with little space between items
+%
+% Usage:
+%   \begin{innerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{innerlist}
+\newlist{innerlist}{itemize}{3}
+    \setlist[innerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixinnerlist{innerlist}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{loneinnerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{loneinnerlist}
+\newlist{loneinnerlist}{itemize}{3}
+    \setlist[loneinnerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixendlist{loneinnerlist}
+    \fixinnerlist{loneinnerlist}
+
+%%% EXTRA SPACE
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+%%% FORMATTING MACROS
+
+% Provides a linked \doi{#1} that links doi:#1 to http://dx.doi.org/#1
+\usepackage{doi}
+% To change the text before the DOI, adjust this command
+%\renewcommand\doitext{doi:}
+
+% Provides a linked \url{#1} that doesn't require escape characters
+\usepackage{url}
+
+% You can adjust the style \url{} uses here:
+% (options are: same, rm, sf, tt; defaults to tt)
+\urlstyle{same}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+% (uncomment to typeset the e\-/mail address in typewriter font;
+%  otherwise, will be typeset in the \urlstyle above)
+%\DeclareUrlCommand\emaillink{\urlstyle{tt}}
+\providecommand*\emaillink[1]{\nolinkurl{#1}}
+\providecommand*\email[1]{\href{mailto:#1}{\emaillink{#1}}}
+
+
+% Custom hyphenation rules for words that LaTeX has trouble with
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[sorting=ydnt,
+			backend=biber,
+			defernumbers=true, 
+			style=numeric,
+			labelnumber=true,
+			maxbibnames=99,
+			giveninits=true,
+			isbn=false]{biblatex}
+
+\DeclareNameAlias{sortname}{last-first/first-last}
+\addbibresource{bibliography.bib}
+\AtEveryBibitem{\clearlist{language}} 
+\AtEveryBibitem{\clearlist{uri}} 
+
+%\AtDataInput{%
+%	\csnumgdef{entrycount:\strfield{prefixnumber}}{%
+%		\csuse{entrycount:\strfield{prefixnumber}}+1}}
+%
+%\DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}    
+%\newrobustcmd*{\mkbibdesc}[1]{%
+%	\number\numexpr\csuse{entrycount:\strfield{prefixnumber}}+1-#1\relax}
+
+
+\nocite{*}
+\begin{document}
+
+%\bibstyle{}
+
+\makeheading{Katherine Barnhart}
+
+\section{Contact Information}
+%
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table.
+%
+% ALSO: \rcollength is the width of the right column of the table
+%       (adjust it to your liking; default is 1.85in).
+%
+\newlength{\rcollength}\setlength{\rcollength}{2.6in}%
+%
+%\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+%\href{http://www.colorado.edu/}{University of Colorado} &  \textit{E-mail:} \href{mailto:katherine.barnhart@colorado.edu}{katherine.barnhart@colorado.edu}\\
+%\href{http://www.colorado.edu/geolsci/}{Department of Geological Sciences} & \href{http://instaar.colorado.edu/people/katy-barnhart/}{instaar.colorado.edu/people/katy-barnhart/} \\
+%\href{http://instaar.colorado.edu/}{Institute for Arctic and Alpine Research} &  \\
+%1560 30th St               & \\
+%Boulder, CO 80303 &  \\
+%\end{tabular}
+
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}rp{\rcollength}}
+	\href{http://www.colorado.edu/}{\textbf{University of Colorado at Boulder}} &  \textit{E-mail:} & \href{mailto:katherine.barnhart@colorado.edu}{katherine.barnhart@colorado.edu}\\
+	CIRES and Department of Geological Sciences  &&\\
+	Boulder, CO 80309-399 &&\\
+	%\textit{Website:}&\href{http://www.katybarnhart.com/}{katybarnhart.com}\\
+\end{tabular}
+
+\section{Education}
+%
+\href{http://www.colorado.edu/}{\textbf{University of Colorado Boulder}},
+Boulder, Colorado 
+\begin{outerlist}
+\item[] Ph.D., Geological Sciences, 2015
+        \begin{innerlist}
+        %\item Dissertation title: \textit{Erosion of icy coastlines in the face of changing sea ice}
+        \item Advisor:
+              \href{http://instaar.colorado.edu/~andersrs/}
+                   {Robert S.~Anderson}
+        %\item Area of Study: Geomorphology, Modern Arctic Change \\
+        \end{innerlist}      
+        \item[] M.S., Geological Sciences, 2010
+        \begin{innerlist}
+       % \item Thesis title: \textit{Deep crustal xenoliths from the Great Falls Tectonic Zone, Montana: Investigating the timing and mechanisms of high-velocity lower crust formation}
+        \item Advisor:
+              \href{http://spot.colorado.edu/~mahank/}
+                   {Kevin H.~Mahan}
+%        \item Area of Study: Geomorphology, Geophysics \\
+        %\item Area of Study: Structural Geology and Metamorphic Petrology
+        \\
+        \end{innerlist}
+\end{outerlist}
+
+\href{http://www.princeton.edu/}{\textbf{Princeton University}},
+Princeton, NJ
+\begin{outerlist}
+\item[] B.S.E., Civil and Environmental Engineering (Honors),  2008
+        \begin{innerlist}
+        \item Geological Engineering Certificate
+        %\item Thesis: \emph{Metamorphism of Proterozoic Rocks in North Central New Mexico based on Quantitative Thermobarometry}
+        \item Advisors:
+        \href{http://www.princeton.edu/geosciences/people/display_person.xml?netid=linc}
+                   {Lincoln S.~Hollister} and \href{http://www.princeton.edu/cee/people/display_person/?netid=jsmith}
+                   {James A. Smith}
+        \end{innerlist}
+\end{outerlist}
+
+\section{Positions}
+\href{http://www.colorado.edu/}{\textbf{University of Colorado Boulder}},
+Boulder, Colorado
+\begin{outerlist}
+		\item[] National Science Foundation EAR Postdoctoral Fellow April 2018--present (2 years)
+	\begin{innerlist}
+		\item Advisors:
+		\href{https://www.colorado.edu/geologicalsciences/greg-tucker}{Greg Tucker},  
+		\href{https://geo.ku.edu/hill-mary-c}{Mary Hill} (University of Kansas), 
+		\href{http://amath.colorado.edu/faculty/kleiberw/}{Will Kleiber} (CU Department of Applied Math)
+	\end{innerlist}
+	\item[] CIRES Research Associate, October 2016--March 2018
+		\begin{innerlist}
+		\item Advisor:
+		\href{https://www.colorado.edu/geologicalsciences/greg-tucker}{Greg Tucker}\\
+		\end{innerlist}
+\end{outerlist}
+
+\href{http://www.annenbergpublicpolicycenter.org/}{\textbf{Annenberg Public Policy Center}}, \href{http://www.upenn.edu}{\textbf{University of Pennsylvania}}, Philadelphia, Pennsylvania
+\begin{outerlist}
+	\item[] William Henrich Distinguished Postdoctoral Fellow, September 2015 - August 2016
+	\begin{innerlist}
+	 \item Advisors:
+	  \href{https://www.asc.upenn.edu/people/faculty/kathleen-hall-jamieson-phd}{Kathleen Hall Jamieson},  
+	  \href{http://www.dietramscheufele.com/}{Dietram Scheufele}, and
+	  \href{http://www.culturalcognition.net/kahan/}{Dan Kahan}\\
+	 \end{innerlist}
+\end{outerlist}
+
+\href{http://www.colorado.edu/}{\textbf{University of Colorado Boulder}},
+Boulder, Colorado
+\begin{outerlist}
+\item[] Graduate Research Assistant,
+	\href{http://instaar.colorado.edu/}{\textbf{Institute of Arctic and Alpine Research}}
+	and \href{http://www.colorado.edu/geolsci/}{\textbf{Department of Geological Sciences}},
+	August 2008--August 2015
+\end{outerlist}
+
+
+\section{Research Interests}
+\begin{itemize}[itemsep=-3pt]
+\item Numerical modeling of geomorphic processes
+\item Model-data comparison, model analysis, and uncertainty quantification
+\item Method development and application of UAS based observation of topography. 
+%\item[] Arctic coastal erosion, sea ice change, and climate interactions;
+%\item[] Sea ice, ocean, atmosphere, land interactions 
+\item Internal variability of climate (present, past, and future) and impacts on geomorphology
+%\item[] Glacial hydrology and proglacial lake development; 
+%\item[] Arctic and alpine permafrost soil properties and processes; 
+%\item[] Impact of orbital variations on geomorphic process rates
+%\item[] Geomorphic constraint on sea level and ice sheet extent
+%\item[] Glacial geomorphology; 
+%\item[] Completeness of the stratigraphic record
+%\item[] Remote sensing of surface shape, nature, and change; 
+%\item[] Geospatial analysis; 
+\item Science communication in complex environments
+\item Data visualization
+\item Reproducibility in computational science
+\end{itemize}
+
+%\section{Approaches}
+%in-situ observation, field instrumentation, remotely sensed observation, process modeling, coupled climate model output
+
+
+\section{Honors}
+\begin{itemize}[itemsep=-3pt]
+\item NSF-EAR Postdoctoral Fellowship (Awarded April 2017)
+\item NASA Earth and Space Science Fellowship (2012-2015)
+\item NSF Graduate Research Fellowship Honorable Mention, 2010
+\item W. Taylor Thom Jr. Prize, Princeton Department of Civil Engineering, 2008
+\item Arthur F. Buddington Award, Princeton Department of Geological Sciences, 2008
+\end{itemize}
+
+\section{Funding}
+\begin{itemize}
+	
+	\item NSF-EAR Postdoctoral Fellowship\\ 
+	\textit{Dynamics from drones: Using high-resolution repeat topography and grain size to differentiate between physically-based models of debris creation and debris flow initiation at Chalk Cliffs, Colorado}\\
+	April 2018--March 2020, \$174k\\
+	PI: K. Barnhart
+
+	\item CU Innovative Seed Grant\\ 
+	\textit{Inferring Earth dynamics from drones:  Developing the data and statistical methods necessary to improve models for landslide hazards}\\
+	July 2017--December 2019, \$50k\\
+	PI. Will Kleiber, CU Applied Math
+	
+	\item NASA Earth and Space Science Fellowship\\ 
+	\textit{Flexible heat flow models of the active layer and conductive permafrost: thermal state from field measurements and satellite-derived skin temperature} 
+	\\September 2012--August 2015, \$90k
+	\\To R.S. Anderson on behalf of graduate student K. Barnhart
+	
+	\item NSF Polar Programs 1203945\\ 
+	\textit{Interpretation of Arctic North Slope Permafrost Borehole Thermal Evolution in Light of Spatial and Temporal Variation in Surface Temperature Fields}, 
+	\\August 2012--October 2015, \$91k 
+	\\PI R.S. Anderson
+	
+\end{itemize}
+
+\section{Software Packages}
+\begin{outerlist}
+	\item[]\href{http://landlab.github.io/#/}{\textbf{\ttfamily landlab}} (October 2016--present)\\
+	{\ttfamily landlab} is a python package for the creation and implementation of two dimensional numerical models. Development is focused, but not limited to, Earth surface processes. 
+	
+	As a contributor to the {\ttfamily landlab} development team my contributions to Landlab are as follows:
+	\begin{itemize}
+		\item Development of process components for surface water flow accumulation, flow direction, hillslope sediment transport, hybrid entrainment-deposition channel erosion, normal fault motion, and spatially variable lithology.
+		\item Development of model grid methods and data structures including the Network Model Grid and Material Layers.
+		\item Implementation of docstring and unit tests for near 100\% testing coverage of contributed code. 
+		\item Cythonization of $\mathcal{O}(n)$ algorithms and improvement of underlying numerical methods. 
+		\vspace{-4mm}
+		\item Creation of model analysis and plotting utilities.
+		\item Writing Jupyter notebooks to support new users learn {\ttfamily landlab} functionality.
+		\item Publication of models in scientific journals (e.g., recent Journal of Open Source Software article about the Lithology component).
+		\item Training of new users and new developers in person and through GitHub Issues.
+		\item Maintenance of continuous integration testing architecture.
+		\item Maintenance and refactoring of automated documentation proceedures.
+	\end{itemize}
+
+	\item[]\href{https://github.com/TerrainBento/terrainbento}{\textbf{\ttfamily terrainbento}} (January 2017--present)\\
+	{\ttfamily terrainbento} is a python package for multi-model analysis in landscape evolution modeling. It contains 28 alternative landscape evolution models built on top of {\ttfamily landlab} that are designed to systematically explore model structure space (e.g. use of a rule for hillslope sediment flux that is linear or non-linear with slope). {\ttfamily terrainbento} also includes model base classes to facilitate the development of new models, tools to efficiently implement a wide range of model boundary conditions, and options for model instantiation and output. 
+	
+	As the primary developer of {\ttfamily terrainbento} my contributions are as follows:
+	\begin{itemize}
+		\item Conceptualization, creation, documentaiton, and testing of 
+		\begin{itemize}
+			\item model base classes which streamline model instantiation and reduce duplication, 
+			\item a comprehensive and extensible set of alternative models,
+			\item methods for variable boundary conditions, and
+			\item utilities for writing model output.
+		\end{itemize}
+		\item Implementation of continuous integration testing and automated documentation of models. 
+		\item Coordination of a four-person developer team. 
+		\item Writing and submission of publications describing {\ttfamily terrainbento}.
+		\item Currently in development: Refactoring codebase to permit generic rainfall functions, generic rainfall-runoff transformations, and construction of a basic model interface for compatability with the CSDMS PyMT.
+	\end{itemize}
+\end{outerlist}
+
+%\section{Small Grants}
+%\begin{itemize}
+%	\item Alaska Geological Society Graduate Research Grant (2012): Permafrost in Alaska \$1000
+%	\item CU Boulder Department of Geological Sciences (2012): Alpine Permafrost Dataloggers, \$1750
+%	\item American Alpine Club (2012):  Alpine Permafrost Dataloggers, \$250
+%	\item GSA Graduate Student Grant (2009): Monazite Geochronology of Xenoliths from within the Great Falls Tectonic Zone, \$2,000.
+%\end{itemize}
+
+
+%\section{Field Efforts}
+%\begin{outerlist}
+%\item \textbf{Niwot Ridge, CO} (2014--2015) Development and deployment of a cold-region soil sensor network (with Andy Wickert). 
+%\item \textbf{Kennicott Glacier, AK} (2012--2014) Measuring the motion, subglacial hydrology, and proglacial lake development of the Kennicott Glacier, Alaska (with Bob Anderson, Billy Armstrong and Andy Wickert). 
+%\item \textbf{Beaufort Sea Coast, AK} (2011) Monitoring the processes of rapid coastal erosion of the Beaufort Sea coast, Alaska (with Irina Overeem, Bob Anderson, Frank Urban, Gary Clow, and Cameron Wobus).
+%\item \textbf{Southwest Greenland Margin} (2011) Gauging rivers and fjord oceanography to develop novel methods of river discharge estimation (with Irina Overeem and Ben Hudson). 
+%\item \textbf{Southwestern Montana} (2008--2010) Field mapping of structural geology and petrology (with Kevin Mahan, Becky Flowers, and Alexis Ault). 
+%\item \textbf{Northern New Mexico} (2007--2009) Field mapping of structural geology and petrology (with Linc Hollister and Pam Walsh). 
+%\end{outerlist}
+
+\section{Publications}
+
+\subsection{In Review}
+\printbibliography[keyword=underreview,heading=none,resetnumbers=true]
+
+
+\subsection{Published}
+\printbibliography[keyword=publication,heading=none,resetnumbers=true]
+
+\subsection{In Preparation}
+\printbibliography[keyword=inpreparation,heading=none,resetnumbers=true]
+
+            
+%\section{Research Projects}
+%\begin{outerlist}
+%\item Effective methods for communicating about Antarctic sea ice. 
+%\item Impact of Pope Francis' Encyclical on acceptance of anthropogenic climate change.
+%\item Constraining the impact of orbital variations on slope-aspect dependent insolation and hillslope processes.
+%\item Sea ice change in CESM-LE ensemble of climate models.
+%\item Pro-glacial lake and outlet stream dynamics of the Kennicott glacier.
+%\item Preservation of shoreline markers in physical and numerical delta models. 
+%\item Whole-Arctic sea ice change and its implications for coastal regions.
+%\item Modeling the process of ice-rich permafrNNX12AN52Host coastal erosion.
+%%\item Applied satellite-based observations of ground temperature to subsurface permafrost development
+%\item Petrology, structural geology, and monazite geochronology of Proterozoic rocks of southwestern Montana.
+%\item Petrology and mictrostructure of Proterozoic rocks of Northern New Mexico.
+%\end{outerlist}
+
+
+
+\subsection{White Papers and Technical Reports} 
+\printbibliography[keyword=reports,heading=none,resetnumbers=true]
+
+\subsection{Non-peer Reviewed Publications}
+\printbibliography[keyword=Magazine,heading=none,resetnumbers=true]
+
+\subsection{Theses}
+\printbibliography[keyword=Thesis,heading=none,resetnumbers=true]
+
+\subsection{Conference Abstracts} 
+\printbibliography[keyword=Conference,heading=none,resetnumbers=true]
+
+\section{Lectures}
+\subsection{Invited Talks} 
+\begin{enumerate}
+	\item[2018]
+	\begin{enumerate}
+		\item[] Coupling of Tectonic and Surface Processes, Boulder, CO
+		\item[] University of Kansas, Department of Geography Seminar, Lawrence, KS
+		\item[] Front Range Community College Honors Speaker Series, Lakewood, CO
+		\item[] Institute for Arctic and Alpine Research Noon Seminar, Boulder, CO
+	\end{enumerate}
+	\item[2017]
+	\begin{enumerate}
+		\item[] Saint Anthony Falls Seminar Series, Minneapolis, MN
+	\end{enumerate}
+	\item[2013]
+	\begin{enumerate}
+		\item[] Community Surface Dynamics Modeling System Annual Meeting, Boulder, CO
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Public Talks} 
+\begin{enumerate}
+	\item[2018]
+	\begin{enumerate}
+		\item[] Boulder Museum of Contemporary Art, Exhibition tour, Boulder, CO
+	\end{enumerate}
+	\item[2017]
+	\begin{enumerate}
+		\item[] Sip of Science Lecture Series, Minneapolis, MN
+	\end{enumerate}
+\end{enumerate}
+
+
+\section{Media Coverage} 
+\printbibliography[keyword=mediacoverage,heading=none,resetnumbers=true]
+
+\section{Students Supervised}
+\begin{outerlist}
+	\item[] Jessica Ghent, Front Range Community College \\
+				  June 2018--present\\
+				  \textit{The impact of ground control points on Structure from Motion scene uncertainty}\\
+				  As part of the Research Experience for Community College Students program, Jess analyzed the impact of ground control point placement at the Chalk Cliffs debris flow site. She has continued this work as a temporary employee at the University of Colorado. She will present her project at the American Geophysical Union Fall meeting in December 2018.
+			  \end{outerlist}
+
+\section{Teaching}
+\begin{outerlist}
+	\item \textbf{Workshop instructor}
+	\begin{innerlist}
+		\item Model sensitivity analysis and optimization with Dakota and Landlab (CSDMS 2017, 2018)
+		\item Science communication for graduate students (Summer 2015)
+	\end{innerlist}
+	\item \textbf{Laboratory Instructor}, University of Colorado at Boulder
+	\begin{innerlist}
+		\item GEOL~3120: Structural Geology (Fall~2008 and 2008)
+		\item GEOL~1030: Introduction to Geology Laboratory (Spring~2009)
+	\end{innerlist}
+	\item \textbf{Outdoor leadership instructor}, Princeton University
+	\begin{innerlist}
+		\item Basic outdoor skills and rock climbing (2006-2008)
+		\item Wilderness first aid (2006-2008)
+	\end{innerlist}
+\end{outerlist}
+
+\section{Service}
+\begin{itemize}
+	\item Reviewer for JGR-Earth Surface, Geomorphology, Natural Hazards,  Earth Surface Processes and Landforms, Journal of Open Source Software 
+	\item Member, Geological Society of America membership committee (2015 - 2017)
+\end{itemize}
+
+\section{Organization of Conference Sessions}
+\begin{itemize}
+	\item AGU Session 2015: Mechanistic underpinnings of damage, disruption, and downslope transport of rock and regolith (with Jill Marshall, Greg Stock, and T.C. Hales)
+	\item EGU Session 2015, 2016, 2017: Risks from a changing cryosphere (with Christian Huggel and Jeff Kargel)
+	\item AGU Session 2012: Thermal Control on Weathering, Erosion and Landscape Evolution (with Bob Anderson, Ben Crosby, and Theodore Barnhart)
+\end{itemize}
+
+\section{Membership}
+\begin{itemize}[itemsep=-3pt]
+	\item \href{http://www.agu.org/}{American Geophysical Union (AGU)}
+	\item \href{http://csdms.colorado.edu/}{Community Surface Dynamics Modeling System (CSDMS)}
+	\item \href{http://www.geosociety.org}{Geological Society of America (GSA)}
+	%\item \href{http://www2.ametsoc.org/ams}{American Meteorological Society (AMS)}
+	\item Association for Women Geoscientists 
+	%\item SSSA
+	%\item MSA
+	%\item United States Permafrost Association
+	%\item Permafrost Young Researchers Network
+\end{itemize}
+
+\section{Computer Skills}
+\begingroup
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{{>{\raggedright\arraybackslash}p{1in}%
+			>{\raggedright\arraybackslash}p{4in}%
+			}}
+	Languages: & Python (primary), R, NCL \\
+	General Development: & Continuous integration with Travis and Appveyor. Package testing with pytest. Creation of automated documentation using sphinx. Version control and collaborative development using Git. Distribution through conda. Bash scripting.\\
+	Scientific Development: & Extensive use of python scientific stack (numpy, scipy, pandas, xarray, matplotlib, jupyter, cython, dask, pytest) and the R tidyverse.\\
+	High Performance Computing & Job submission with slurm and torque, environment management, basic platform specific compilation. \\
+	Software:  &  \LaTeX, Matlab, GRASS GIS, QGIS, ArcGIS, Dakota Uncertainty Quantification, Agisoft Photoscan, Cloud Compare, Adobe Creative Suite (Illustrator, Photoshop, Premiere, AfterEffects) \\
+\end{tabular}
+\endgroup
+\end{document}
+%-------------------------------------------------------%
