@@ -346,6 +346,26 @@
 \AtEveryBibitem{\clearlist{language}} 
 \AtEveryBibitem{\clearlist{uri}} 
 
+
+\makeatletter
+\define@key{blx@bib1}{keyword}{\xdef\mykeyword{#1}}
+\makeatother
+
+\newcommand{\stepKeywordCount}[1]{\csnumgdef{entrycount:#1}{\csuse{entrycount:#1}+1}}
+
+\AtDataInput{%
+	\iffieldundef{labelprefix}{%
+		\begingroup%
+		\edef\mytemp{\strfield{keywords}}
+		\expandafter\forcsvlist\expandafter{\expandafter\stepKeywordCount\expandafter}\expandafter{\mytemp}%
+		\endgroup%
+	}{}%
+}%
+
+\DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}
+\newrobustcmd*{\mkbibdesc}[1]{\number\numexpr\csuse{entrycount:\mykeyword}+1-#1\relax}
+\newcommand{\mykeyword}{}
+
 %\AtDataInput{%
 %	\csnumgdef{entrycount:\strfield{prefixnumber}}{%
 %		\csuse{entrycount:\strfield{prefixnumber}}+1}}
@@ -500,7 +520,28 @@ Boulder, Colorado
 \end{itemize}
 
 \section{Funding}
+\subsection{Pending}
 \begin{itemize}
+	\item 
+	NSF-EAR Geomorphology and Land Use Dynamics\\ 
+	\textit{Collaborative Research: Steepland dynamics and steady-state forms resulting from debris flows}\\
+	Submitted August 2019, \$94k (CU portion)\\
+	PI: K. Barnhart (with Lead PI L. McGuire (University of Arizona) and CO-PI S. McCoy (University of Nevada Reno))
+	\item NSF-EAR Geodynamics\\ 
+	\textit{Collaborative Research: Building open source modeling infrastructure to explore the co-evolution of earth's surface and interior}\\
+	Submitted August 2019, \$385k (CU portion)\\
+	Lead PI: K. Barnhart (with CO-PI N. Gasparini, Tulane University)
+	\item Minnesota Sea Grant\\ 
+	\textit{Managing mud and floods on the Nemadji River}\\
+	Submitted August 2019, \$39k (CU portion)\\
+	PI: K. Barnhart (with Lead PI A. Wickert (University of Minnesota) and CO-PI M. Hermes, University of Minnesota)
+\end{itemize}
+\subsection{Awarded}
+\begin{itemize}
+	\item CU Undergraduate Research Program Team Grant\\
+	\textit{Historic terrain: Construction of topographic models from the 1950s to test landscape evolution theory}\\
+	April 2018--March 2020, \$3k\\
+	PI: G. Tucker
 	
 	\item NSF-EAR Postdoctoral Fellowship\\ 
 	\textit{Dynamics from drones: Using high-resolution repeat topography and grain size to differentiate between physically-based models of debris creation and debris flow initiation at Chalk Cliffs, Colorado}\\
@@ -584,14 +625,14 @@ Boulder, Colorado
 
 \section{Publications}
 
-\subsection{Submitted}
-\printbibliography[keyword=submitted,heading=none,resetnumbers=true]
+%\subsection{Submitted}
+%\printbibliography[keyword=submitted,heading=none,resetnumbers=true]
 
 \subsection{Under Review}
 \printbibliography[keyword=underreview,heading=none,resetnumbers=true]
 
-\subsection{In Press}
-\printbibliography[keyword=inpress,heading=none,resetnumbers=true]
+%\subsection{In Press}
+%\printbibliography[keyword=inpress,heading=none,resetnumbers=true]
 
 
 \subsection{Published}
@@ -633,6 +674,10 @@ Boulder, Colorado
 \section{Lectures}
 \subsection{Invited Talks} 
 \begin{enumerate}
+	\item[2019]
+	\begin{enumerate}
+		\item[] Goldschmidt 
+	\end{enumerate}
 	\item[2018]
 	\begin{enumerate}
 		\item[] Coupling of Tectonic and Surface Processes, Boulder, CO
@@ -668,17 +713,32 @@ Boulder, Colorado
 
 \section{Students Supervised}
 \begin{outerlist}
-	\item[] Jessica Ghent, Front Range Community College \\
-				  June 2018--present\\
-				  \textit{The impact of ground control points on Structure from Motion scene uncertainty}\\
-				  As part of the Research Experience for Community College Students program, Jess analyzed the impact of ground control point placement at the Chalk Cliffs debris flow site. She has continued this work as a temporary employee at the University of Colorado. She presented her project at the American Geophysical Union Fall meeting in December 2018. Has been accepted to the University of Colorado Honors Program to matriculate in Fall 2019.
-			  \end{outerlist}
+	\item Jessica Ghent, Front Range Community College, University of Colorado at Boulder \\
+				  2018--present
+				  \begin{innerlist}
+				  \item
+				  \textit{The impact of ground control points on Structure from Motion scene uncertainty:}
+				  Project for the Research Experience for Community College Students program. Analysis of the impact of ground control point placement at the Chalk Cliffs debris flow site.  Presented this work at the 2018 American Geophysical Union Fall meeting.
+				  \item
+				  \textit{Modeling of volcanic landscape evolution with Landlab:}
+				  Creation of a component to create and evolve cinder cones.
+				  % item Change detection at Sugarloaf?
+				 \end{innerlist}
+		\item Keely Lawrence, Front Range Community College, University of Colorado at Boulder \\
+	 2019--present
+	 \begin{innerlist}
+	 	\item 
+	 	\textit{Classification of surface features using a deep convolutional neural network:}
+	 	Project for the Research Experience for Community College Students program. Created and applied a training data set of pixel-level classified images at the Chalk Cliffs debris flow site using tensorflow.
+	\item \textit{Historic change detection at Caineville Plateau, Utah:} Use of historic aerial imagery and modern UAS-based imagery to assess topographic change in badlands. 
+	\end{innerlist}
+\end{outerlist}
 
 \section{Teaching}
 \begin{outerlist}
 	\item \textbf{Workshop instructor}
 	\begin{innerlist}
-		\item Model sensitivity analysis and optimization with Dakota and Landlab (CSDMS 2017, 2018)
+		\item Model sensitivity analysis and optimization with Dakota and Landlab (CSDMS 2017, 2018, 2019)
 		\item Science communication for graduate students (Summer 2015)
 	\end{innerlist}
 	\item \textbf{Laboratory Instructor}, University of Colorado at Boulder
