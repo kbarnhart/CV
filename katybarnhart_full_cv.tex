@@ -76,9 +76,10 @@
 %% Use these lines for letter-sized paper
 \usepackage[paper=letterpaper,
             %includefoot, % Uncomment to put page number above margin
-            marginparwidth=1.2in,     % Length of section titles
+            marginparwidth=0.0in,     % Length of section titles
             marginparsep=.05in,       % Space between titles and text
-            margin=1in,               % 1 inch margins
+            top=1in,left=1in,bottom=1in,right=1in+15pt,
+            %margin=1in,               % 1 inch margins
             includemp]{geometry}
 
 %% Use these lines for A4-sized paper
@@ -94,6 +95,7 @@
 
 % Provides special list environments and macros to create new ones
 \usepackage[shortlabels]{enumitem}
+
 
 %%%%%%%%% Simpler refsections for CV sections
 %%%%%%%%% (thanks to natbib for inspiration)
@@ -202,11 +204,10 @@
 % to work, make sure the extra set of curly braces is included. Also
 % makes ure that \usepackage{graphicx} is somewhere in the preamble.
 \newcommand{\makeheading}[2][]%
-        {\hspace*{-\marginparsep minus \marginparwidth}%
-         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
-             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
-                 \rule{\columnwidth}{1pt}%
-         \end{minipage}}
+        {{\Large \bfseries #2 \hfill #1}\\[-0.2\baselineskip]%
+                 \hspace{-15pt}\noindent \makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+                  %
+         }  
 
 %%% SECTION HEADINGS
 
@@ -214,19 +215,21 @@
 %
 % Usage: \section{section name}
 \renewcommand{\section}[1]{\pagebreak[3]%
-    \vspace{1.3\baselineskip}%
+    \vspace{1.2\baselineskip}%
     \phantomsection\addcontentsline{toc}{section}{#1}%
-    \noindent\llap{\large\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
-    \vspace{-\baselineskip}\par}
+    \noindent \hspace{-15pt}{\large\scshape #1}%
+    \vspace{0.2\baselineskip}\par
+}
 
 % The subsection headings. Flush left in small caps down pseudo-margin.
 %
 % Usage: \section{section name}
 \renewcommand{\subsection}[1]{\pagebreak[3]%
-	\vspace{1.3\baselineskip}%
+	\vspace{0.2\baselineskip}%
 	\phantomsection\addcontentsline{toc}{section}{#1}%
-	\noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
-	\vspace{-\baselineskip}\par}
+	\noindent \hspace{-7pt} {\scshape #1}%
+	\vspace{0.2\baselineskip}\par
+}
 
 %%% LISTS
 
@@ -258,7 +261,7 @@
 %       \item ...    % (or \item[] for no bullet)
 %   \end{outerlist}
 \newlist{outerlist}{itemize}{3}
-    \setlist[outerlist]{label=\enskip\textbullet,leftmargin=*}
+    \setlist[outerlist]{label=\enskip\textbullet,leftmargin=*,partopsep=0pt,topsep=0pt,itemsep=0pt,}
     \fixendlist{outerlist}
     \fixouterlist{outerlist}
 
@@ -338,6 +341,7 @@
 			style=numeric,
 			labelnumber=true,
 			maxbibnames=99,
+			date=year,
 			giveninits=true,
 			isbn=false]{biblatex}
 
@@ -381,102 +385,84 @@
 
 %\bibstyle{}
 
-\makeheading{Katherine Barnhart\\ {\small (she/her/hers)}}
+\makeheading{\hspace{-15pt} {\Large Katherine Barnhart} {\small (she/her/hers)}}
 
+\vspace{-15pt}
 \section{Contact Information}
 
 \newlength{\rcollength}\setlength{\rcollength}{2.6in}%
 
 \begin{tabular}[t]{@{}p{\textwidth-\rcollength}rp{\rcollength}}
 	\href{https://www.usgs.gov/natural-hazards/landslide-hazards}{\textbf{U.S. Geological Survey}} &  \textit{E-mail:} & \href{mailto:krbarnhart@usgs.gov}{krbarnhart@usgs.gov}\\
-	Landslide Hazards Program  &&\\
-	1711 Illinois St.&&\\
+	Landslide Hazards Program  &\textit{Phone:} & 303-273-8582 (o)\\
+	1711 Illinois St.&&206-948-2286 (c)\\
 	Golden, CO 80401 &&\\
 	%\textit{Website:}&\href{http://www.katybarnhart.com/}{katybarnhart.com}\\
 \end{tabular}
 
 \section{Education}
 
-\href{http://www.colorado.edu/}{\textbf{University of Colorado Boulder}},
-Boulder, Colorado 
 \begin{outerlist}
-\item[] Ph.D., Geological Sciences, August 2015
-        \begin{innerlist}
-        \item Advisor:
+\item \href{http://www.colorado.edu/}{\textbf{University of Colorado Boulder}},
+Boulder, Colorado 
+\begin{innerlist}
+\item[] \textit{August 2015,} Ph.D., Geological Sciences, Advisor:
               \href{http://instaar.colorado.edu/~andersrs/}
                    {Robert S.~Anderson}
-        \end{innerlist}      
-        \item[] M.S., Geological Sciences, May 2010
-        \begin{innerlist}
-        \item Advisor:
+\item[] \textit{May 2010,} M.S., Geological Sciences, Advisor:
               \href{http://spot.colorado.edu/~mahank/}
                    {Kevin H.~Mahan}
-        \\
-        \end{innerlist}
-\end{outerlist}
+\end{innerlist}
 
-\href{http://www.princeton.edu/}{\textbf{Princeton University}},
+\item \href{http://www.princeton.edu/}{\textbf{Princeton University}},
 Princeton, NJ
-\begin{outerlist}
-\item[] B.S.E., Civil and Environmental Engineering (Honors), May 2008
-        \begin{innerlist}
-        \item Geological Engineering Certificate
-        \item Advisors:
+\begin{innerlist}
+\item[] \textit{May 2008,} B.S.E., Civil and Environmental Engineering (Honors) and Geological Engineering Certificate, Advisors:
         \href{http://www.princeton.edu/geosciences/people/display_person.xml?netid=linc}
                    {Lincoln S.~Hollister} and \href{http://www.princeton.edu/cee/people/display_person/?netid=jsmith}
                    {James A. Smith}
-        \end{innerlist}
+\end{innerlist}
 \end{outerlist}
 
 \section{Positions + Affiliations}
-\href{https://www.usgs.gov}{\textbf{U.S. Geological Survey}},
+\begin{outerlist}
+\item \href{https://www.usgs.gov}{\textbf{U.S. Geological Survey}},
 Golden, Colorado
-\begin{outerlist}
-	\item[] Research Civil Engineer April 2020--present
-	\begin{innerlist}
-	\item Landslide Hazards Program, post-fire debris flow group
-	\item Supervisor: \href{https://www.usgs.gov/staff-profiles/jason-kean}{Jason Kean}\\
-	\end{innerlist}
-\end{outerlist}
+\begin{innerlist}
+	\item[] \textit{April 2020--present,} Research Civil Engineer, Landslide Hazards Program, Supervisor: \href{https://www.usgs.gov/staff-profiles/jason-kean}{Jason Kean}
+\end{innerlist}
 
-\href{https://www.arizona.edu/}{\textbf{University of Arizona}},
+\item \href{https://www.arizona.edu/}{\textbf{University of Arizona}},
  Tucson, Arizona  
-\begin{outerlist}
-	\item[] Department of Geosciences Designated Campus Colleague, March 2020--present\\
-\end{outerlist}
+\begin{innerlist}
+	\item[] \textit{March 2020--present, } Department of Geosciences Designated Campus Colleague
+\end{innerlist}
 
-\href{http://www.colorado.edu/}{\textbf{University of Colorado Boulder}},
+\item \href{http://www.colorado.edu/}{\textbf{University of Colorado Boulder}},
 Boulder, Colorado
-\begin{outerlist}
-	\item[] \href{https://cires.colorado.edu/}{CIRES} Research Affiliate, May 2020--present
-		\item[] National Science Foundation EAR Postdoctoral Fellow, April 2018--March 2020
-	\begin{innerlist}
-		\item Advisors:
+\begin{innerlist}
+	\item[] \textit{May 2020--present, } \href{https://cires.colorado.edu/}{CIRES} Research Affiliate
+	
+	\item[] \textit{April 2018--March 2020,} National Science Foundation EAR Postdoctoral Fellow, Advisors:
 		\href{https://www.colorado.edu/geologicalsciences/greg-tucker}{Gregory E. Tucker},  
 		\href{https://geo.ku.edu/hill-mary-c}{Mary C. Hill} (University of Kansas), 
 		\href{http://amath.colorado.edu/faculty/kleiberw/}{William Kleiber} (CU Department of Applied Math)
-	\end{innerlist}
-	\item[] \href{https://cires.colorado.edu/}{CIRES} Research Associate, October 2016--March 2018
-		\begin{innerlist}
-		\item Advisor:
+	\item[] \textit{October 2016--March 2018,} \href{https://cires.colorado.edu/}{CIRES} Research Associate, Advisor:
 		\href{https://www.colorado.edu/geologicalsciences/greg-tucker}{Gregory E. Tucker}
-		\end{innerlist}
-	\item[] Graduate Research Assistant, August 2008--August 2015\\
+	\item[] \textit{August 2008--August 2015,} Graduate Research Assistant
 		%\href{http://instaar.colorado.edu/}{\textbf{Institute of Arctic and Alpine Research}}
 %	and \href{http://www.colorado.edu/geolsci/}{\textbf{Department of Geological Sciences}},
-\end{outerlist}
+\end{innerlist}
 
-\href{http://www.annenbergpublicpolicycenter.org/}{\textbf{Annenberg Public Policy Center}}, \href{http://www.upenn.edu}{\textbf{University of Pennsylvania}}, Philadelphia, Pennsylvania
-\begin{outerlist}
-	\item[] William Henrich Distinguished Postdoctoral Fellow, September 2015 - August 2016
-	\begin{innerlist}
-	 \item Advisors:
+\item \href{http://www.annenbergpublicpolicycenter.org/}{\textbf{Annenberg Public Policy Center}}, \href{http://www.upenn.edu}{\textbf{University of Pennsylvania}}, Philadelphia, Pennsylvania
+\begin{innerlist}
+	\item[] \textit{September 2015--August 2016, } William Henrich Distinguished Postdoctoral Fellow, Advisors:
 	  \href{https://www.asc.upenn.edu/people/faculty/kathleen-hall-jamieson-phd}{Kathleen Hall Jamieson},  
 	  \href{http://www.dietramscheufele.com/}{Dietram Scheufele}, and
 	  \href{http://www.culturalcognition.net/kahan/}{Dan Kahan}
-	 \end{innerlist}
-\end{outerlist}
+\end{innerlist}
 
+\end{outerlist}
 
 %\section{Research Interests}
 %\begin{itemize}[itemsep=-3pt]
@@ -504,16 +490,16 @@ Boulder, Colorado
 
 
 \section{Honors}
-\begin{itemize}[itemsep=-3pt]
-\item CSDMS Terrestrial Working Group Member Spotlight Award (2020)
-\item USGS Mendenhall Fellowship (2020-2022)
-\item NSF-EAR Postdoctoral Fellowship (Awarded April 2017)
-\item NASA Earth and Space Science Fellowship (2012-2015)
+\begin{outerlist}
+\item CSDMS Terrestrial Working Group Member Spotlight Award, 2020
+\item USGS Mendenhall Fellowship, 2020-2022
+\item NSF-EAR Postdoctoral Fellowship, 2017
+\item NASA Earth and Space Science Fellowship, 2012-2015
 \item NSF Graduate Research Fellowship Honorable Mention, 2010
 \item W. Taylor Thom Jr. Prize, Princeton Department of Civil Engineering, 2008
 \item Arthur F. Buddington Award, Princeton Department of Geological Sciences, 2008
-\end{itemize}
-\pagebreak
+\end{outerlist}
+
 
 %\section{Field Efforts}
 %\begin{outerlist}
@@ -533,29 +519,37 @@ Boulder, Colorado
 %\printbibliography[keyword=submitted,heading=none,resetnumbers=true]
 
 \subsection{Under Review}
-\printbibliography[keyword=underreview,heading=none,resetnumbers=true]
+\vspace{-5pt}
+\printbibliography[keyword=underreview,heading=none,resetnumbers=-23]
 
 \subsection{In Press}
-\printbibliography[keyword=inpress,heading=none,resetnumbers=true]
+\vspace{-5pt}
+\printbibliography[keyword=inpress,heading=none,resetnumbers=-22]
 
 \subsection{Published}
+\vspace{-5pt}
 \printbibliography[keyword=publication,heading=none,resetnumbers=true]
 
 \subsection{White Papers and Technical Reports} 
+\vspace{-5pt}
 \printbibliography[keyword=reports,heading=none,resetnumbers=true]
 
 \subsection{Non-peer Reviewed Publications}
+\vspace{-5pt}
 \printbibliography[keyword=Magazine,heading=none,resetnumbers=true]
 
 \subsection{Theses}
+\vspace{-5pt}
 \printbibliography[keyword=Thesis,heading=none,resetnumbers=true]
 
 \subsection{Conference Abstracts} 
+\vspace{-5pt}
 \printbibliography[keyword=Conference,heading=none,resetnumbers=true]
 
-\section{Media Coverage} 
+\subsection{Media Coverage} 
+\vspace{-5pt}
 \printbibliography[keyword=mediacoverage,heading=none,resetnumbers=true]
-
+\vspace{-10pt}
 
 %\section{Research Projects}
 %\begin{outerlist}
@@ -572,46 +566,8 @@ Boulder, Colorado
 %\item Petrology and mictrostructure of Proterozoic rocks of Northern New Mexico.
 %\end{outerlist}
 
-\section{Lectures}
-\subsection{Invited Talks} 
-\begin{enumerate}
-	\item[2019]
-	\begin{enumerate}
-		\item[] Goldschmidt, Barcelona, Spain
-		\item[] University of Colorado at Boulder, Department of Geological Sciences, Boulder, CO
-		\item[] University of Colorado at Boulder,  Institute for Arctic and Alpine Research, Boulder, CO
-	\end{enumerate}
-	\item[2018]
-	\begin{enumerate}
-		\item[] Coupling of Tectonic and Surface Processes, Boulder, CO
-		\item[] University of Kansas, Department of Geography Seminar, Lawrence, KS
-		\item[] Front Range Community College Honors Speaker Series, Lakewood, CO
-		\item[] University of Colorado at Boulder,  Institute for Arctic and Alpine Research, Boulder, CO
-	\end{enumerate}
-	\item[2017]
-	\begin{enumerate}
-		\item[] Saint Anthony Falls Seminar Series, Minneapolis, MN
-	\end{enumerate}
-	\item[2013]
-	\begin{enumerate}
-		\item[] Community Surface Dynamics Modeling System Annual Meeting, Boulder, CO
-	\end{enumerate}
-\end{enumerate}
-
-\subsection{Public Talks} 
-\begin{enumerate}
-	\item[2018]
-	\begin{enumerate}
-		\item[] Boulder Museum of Contemporary Art, Exhibition tour, Boulder, CO
-	\end{enumerate}
-	\item[2017]
-	\begin{enumerate}
-		\item[] Sip of Science Lecture Series, Minneapolis, MN
-	\end{enumerate}
-\end{enumerate}
-
-
-\section{Funding}
+%\pagebreak
+\section{Funding Awarded}
 %\subsection{Pending}
 %\begin{itemize}
 %	\item Minnesota Sea Grant\\ 
@@ -619,8 +575,8 @@ Boulder, Colorado
 %	Submitted August 2019, \$39k (CU portion)\\
 %	PI: K. Barnhart (with Lead PI A. Wickert (University of Minnesota) and CO-PI M. Hermes, University of Minnesota)
 %\end{itemize}
-\subsection{Awarded}
-\begin{itemize}
+%\subsection{Awarded}
+\begin{outerlist}
 	\item 
 	NSF-EAR Geomorphology and Land Use Dynamics\\ 
 	\textit{Collaborative Research: Steepland dynamics and steady-state forms resulting from debris flows}\\
@@ -657,7 +613,47 @@ Boulder, Colorado
 	\\August 2012--October 2015, \$91k 
 	\\PI R.S. Anderson
 	
-\end{itemize}
+\end{outerlist}
+
+\section{Lectures}
+\subsection{Invited Talks} 
+\vspace{-10pt}
+\begin{enumerate}[itemsep=0pt]
+	\item[2019]
+	\begin{enumerate}[itemsep=0pt]
+		\item[] Goldschmidt, Barcelona, Spain
+		\item[] University of Colorado at Boulder, Department of Geological Sciences, Boulder, CO
+		\item[] University of Colorado at Boulder,  Institute for Arctic and Alpine Research, Boulder, CO
+	\end{enumerate}
+	\item[2018]
+	\begin{enumerate}[itemsep=0pt]
+		\item[] Coupling of Tectonic and Surface Processes, Boulder, CO
+		\item[] University of Kansas, Department of Geography Seminar, Lawrence, KS
+		\item[] Front Range Community College Honors Speaker Series, Lakewood, CO
+		\item[] University of Colorado at Boulder,  Institute for Arctic and Alpine Research, Boulder, CO
+	\end{enumerate}
+	\item[2017]
+	\begin{enumerate}[itemsep=0pt]
+		\item[] Saint Anthony Falls Seminar Series, Minneapolis, MN
+	\end{enumerate}
+	\item[2013]
+	\begin{enumerate}[itemsep=0pt]
+		\item[] Community Surface Dynamics Modeling System Annual Meeting, Boulder, CO
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Public Talks} 
+\vspace{-10pt}
+\begin{enumerate}[itemsep=0pt]
+	\item[2018]
+	\begin{enumerate}[itemsep=0pt]
+		\item[] Boulder Museum of Contemporary Art, Exhibition tour, Boulder, CO
+	\end{enumerate}
+	\item[2017]
+	\begin{enumerate}[itemsep=0pt]
+		\item[] Sip of Science Lecture Series, Minneapolis, MN
+	\end{enumerate}
+\end{enumerate}
 
 
 %\section{Small Grants}
@@ -674,12 +670,11 @@ Boulder, Colorado
 	{\ttfamily landlab} is a python package for the creation and implementation of two dimensional numerical models. Development is focused on, but not limited to, Earth surface processes. 
 	
 	As a contributor to the {\ttfamily landlab} development team my contributions to Landlab are as follows:
-	\begin{itemize}
+	\begin{itemize}[itemsep=0pt]
 		\item Development of process components for surface water flow accumulation, flow direction, hillslope sediment transport, fluvial sediment transport, hybrid entrainment-deposition channel erosion, normal fault motion, and spatially variable lithology.
 		\item Development of model grid methods and data structures including the Network Model Grid and Material Layers.
 		\item Implementation of docstring and unit tests for near 100\% testing coverage of contributed code. 
 		\item Cythonization of $\mathcal{O}(n)$ algorithms and improvement of underlying numerical methods. 
-		\vspace{-4mm}
 		\item Creation of model analysis and plotting utilities.
 		\item Writing Jupyter notebooks to support new users learn {\ttfamily landlab} functionality.
 		\item Publication of models in scientific journals.
@@ -700,31 +695,29 @@ Boulder, Colorado
 
 \section{Students Supervised}
 \begin{outerlist}
-	\item David Litwin, Johns Hopkins University XXXXX TODO
-	\item Jessica Ghent, Front Range Community College, University of Colorado at Boulder \\
-				  2018--present
-				  \begin{innerlist}
-				  \item
-				  \textit{The impact of ground control points on Structure from Motion scene uncertainty:}
-				  Project for the Research Experience for Community College Students program. Analysis of the impact of ground control point placement at the Chalk Cliffs debris flow site.  Presented this work at the 2018 American Geophysical Union Fall meeting.
-				  \item
-				  \textit{Modeling of volcanic landscape evolution with Landlab:}
-				  Creation of a component to create and evolve cinder cones.
-				  % item Change detection at Sugarloaf?
-				 \end{innerlist}
-		\item Keely Lawrence, Front Range Community College, University of Colorado at Boulder \\
-	 2019--present
-	 \begin{innerlist}
-	 	\item 
-	 	\textit{Classification of surface features using a deep convolutional neural network:}
-	 	Project for the Research Experience for Community College Students program. Created and applied a training data set of pixel-level classified images at the Chalk Cliffs debris flow site using tensorflow.
-	\item \textit{Historic change detection at Caineville Plateau, Utah:} Use of historic aerial imagery and modern UAS-based imagery to assess topographic change in badlands. 
-	\end{innerlist}
+	\item David Litwin, Johns Hopkins University, 2019--present
+	\item Jessica Ghent, Front Range Community College, University of Colorado at Boulder, 2018--present
+%				  \begin{innerlist}
+%				  \item
+%				  \textit{The impact of ground control points on Structure from Motion scene uncertainty:}
+%				  Project for the Research Experience for Community College Students program. Analysis of the impact of ground control point placement at the Chalk Cliffs debris flow site.  Presented this work at the 2018 American Geophysical Union Fall meeting.
+%				  \item
+%				  \textit{Modeling of volcanic landscape evolution with Landlab:}
+%				  Creation of a component to create and evolve cinder cones.
+%				  % item Change detection at Sugarloaf?
+%				 \end{innerlist}
+		\item Keely Lawrence, Front Range Community College, University of Colorado at Boulder, 2019--present
+%	 \begin{innerlist}
+%	 	\item 
+%	 	\textit{Classification of surface features using a deep convolutional neural network:}
+%	 	Project for the Research Experience for Community College Students program. Created and applied a training data set of pixel-level classified images at the Chalk Cliffs debris flow site using tensorflow.
+%	\item \textit{Historic change detection at Caineville Plateau, Utah:} Use of historic aerial imagery and modern UAS-based imagery to assess topographic change in badlands. 
+%	\end{innerlist}
 \end{outerlist}
 
 
 \section{Service}
-\begin{itemize}
+\begin{outerlist}
 	\item Panelist on the Modeling the Critical Zone Cyberseminar for the  Growing the Critical Zone Research Coordination Network (Feb 2020)
 	\item Co-chair (with Allison Pfieffer) of the Network Sediment Transport Initiative of the Community Surface Dynamics Modeling System (2020--present)
 	\item Topic Editor for Geosciences, Journal of Open Source Software (2019--present)
@@ -732,15 +725,15 @@ Boulder, Colorado
 	\item Member, American Geophysical Union Hydrologic Uncertainty Technical Committee (February 2019--present).
 	\item Reviewer for JGR-Earth Surface, Geomorphology, Natural Hazards, Earth Surface Processes and Landforms, Journal of Open Source Software, Journal of Flood Risk Management, Proceedings of the National Academy of Sciences, Earth Surface Dynamics
 	\item Member, Geological Society of America membership committee (2015 - 2017)
-\end{itemize}
+\end{outerlist}
 
 \section{Organization of Conference Sessions}
-\begin{itemize}
+\begin{outerlist}
 	\item AGU Session 2020: Prediction in geomorphology, 20 years later (with Evan Goldstein, Allison Pfeiffer, and Tyler Doane)
 	\item AGU Session 2015: Mechanistic underpinnings of damage, disruption, and downslope transport of rock and regolith (with Jill Marshall, Greg Stock, and T.C. Hales)
 	\item EGU Session 2015, 2016, 2017: Risks from a changing cryosphere (with Christian Huggel and Jeff Kargel)
 	\item AGU Session 2012: Thermal Control on Weathering, Erosion and Landscape Evolution (with Bob Anderson, Ben Crosby, and Theodore Barnhart)
-\end{itemize}
+\end{outerlist}
 
 \section{Teaching}
 \begin{outerlist}
@@ -778,7 +771,7 @@ Boulder, Colorado
 \section{Computer Skills}
 \begingroup
 \renewcommand{\arraystretch}{1.5}
-\begin{tabular}{{>{\raggedright\arraybackslash}p{1in}%
+\begin{tabular}{{>{\raggedright\arraybackslash}p{1.5in}%
 			>{\raggedright\arraybackslash}p{4in}%
 			}}
 	Languages: & Python (primary), R, fortran \\
