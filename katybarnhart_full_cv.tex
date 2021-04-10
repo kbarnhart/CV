@@ -492,7 +492,7 @@ Boulder, Colorado
 \section{Honors}
 \begin{outerlist}
 \item CSDMS Terrestrial Working Group Member Spotlight Award, 2020
-\item USGS Mendenhall Fellowship, 2020-2022
+\item USGS Mendenhall Fellowship, 2020
 \item NSF-EAR Postdoctoral Fellowship, 2017
 \item NASA Earth and Space Science Fellowship, 2012-2015
 \item NSF Graduate Research Fellowship Honorable Mention, 2010
@@ -522,9 +522,9 @@ Boulder, Colorado
 \vspace{-5pt}
 \printbibliography[keyword=underreview,heading=none,resetnumbers=-24]
 
-\subsection{In Press}
-\vspace{-5pt}
-\printbibliography[keyword=inpress,heading=none,resetnumbers=-23]
+%\subsection{In Press}
+%\vspace{-5pt}
+%\printbibliography[keyword=inpress,heading=none,resetnumbers=-23]
 
 \subsection{Published}
 \vspace{-5pt}
@@ -577,6 +577,13 @@ Boulder, Colorado
 %\end{itemize}
 %\subsection{Awarded}
 \begin{outerlist}
+	\item 
+	USGS Risk Community of Practice\\ 
+	\textit{User needs assessment of southern California emergency managers to improve post-fire debris flow inundation hazard products}\\
+	April 2021--April 2022\\
+	\$35k \\
+	PI: K. Barnhart
+	
 	\item 
 	NSF-EAR Geomorphology and Land Use Dynamics\\ 
 	\textit{Collaborative Research: Steepland dynamics and steady-state forms resulting from debris flows}\\
@@ -673,19 +680,19 @@ Boulder, Colorado
 	\item[]\href{http://landlab.github.io/#/}{\textbf{\ttfamily landlab}} (October 2016--present)\\
 	{\ttfamily landlab} is a python package for the creation and implementation of two dimensional numerical models. Development is focused on, but not limited to, Earth surface processes. 
 	
-	As a contributor to the {\ttfamily landlab} development team my contributions to Landlab are as follows:
-	\begin{itemize}[itemsep=0pt]
-		\item Development of process components for surface water flow accumulation, flow direction, hillslope sediment transport, fluvial sediment transport, hybrid entrainment-deposition channel erosion, normal fault motion, and spatially variable lithology.
-		\item Development of model grid methods and data structures including the Network Model Grid and Material Layers.
-		\item Implementation of docstring and unit tests for near 100\% testing coverage of contributed code. 
-		\item Cythonization of $\mathcal{O}(n)$ algorithms and improvement of underlying numerical methods. 
-		\item Creation of model analysis and plotting utilities.
-		\item Writing Jupyter notebooks to support new users learn {\ttfamily landlab} functionality.
-		\item Publication of models in scientific journals.
-		\item Training of new users and new developers in person and through GitHub Issues.
-		\item Maintenance of continuous integration testing architecture.
-		\item Maintenance and refactoring of automated documentation procedures.
-	\end{itemize}
+%	As a contributor to the {\ttfamily landlab} development team my contributions to Landlab are as follows:
+%	\begin{itemize}[itemsep=0pt]
+%		\item Development of process components for surface water flow accumulation, flow direction, hillslope sediment transport, fluvial sediment transport, hybrid entrainment-deposition channel erosion, normal fault motion, and spatially variable lithology.
+%		\item Development of model grid methods and data structures including the Network Model Grid and Material Layers.
+%		\item Implementation of docstring and unit tests for near 100\% testing coverage of contributed code. 
+%		\item Cythonization of $\mathcal{O}(n)$ algorithms and improvement of underlying numerical methods. 
+%		\item Creation of model analysis and plotting utilities.
+%		\item Writing Jupyter notebooks to support new users learn {\ttfamily landlab} functionality.
+%		\item Publication of models in scientific journals.
+%		\item Training of new users and new developers in person and through GitHub Issues.
+%		\item Maintenance of continuous integration testing architecture.
+%		\item Maintenance and refactoring of automated documentation procedures.
+%	\end{itemize}
 	
 	\item[]\href{https://github.com/TerrainBento/terrainbento}{\textbf{\ttfamily terrainbento}} (January 2017--present)\\
 	{\ttfamily terrainbento} is a python package for multi-model analysis in landscape evolution modeling. It contains 28 alternative landscape evolution models built on top of {\ttfamily landlab} that are designed to systematically explore model structure space (e.g. use of a rule for hillslope sediment flux that is linear or non-linear with slope). {\ttfamily terrainbento} also includes model base classes to facilitate the development of new models, tools to efficiently implement a wide range of model boundary conditions, and options for model instantiation and output. 
@@ -722,13 +729,24 @@ Boulder, Colorado
 
 \section{Service}
 \begin{outerlist}
+	\item Panelist on the AGU EPSP April 2021 seminar ``A discussion on building a supportive research community''.
+	\item USGS Hazard's Mission Area URGE Pod discussion group leader (Jan 2020--present)
 	\item AGU EPSP Wonderful Coffee Hour Coordinator (Jan 2021--present)
 	\item Panelist on the Modeling the Critical Zone Cyberseminar for the  Growing the Critical Zone Research Coordination Network (Feb 2020)
 	\item Co-chair (with Allison Pfieffer) of the Network Sediment Transport Initiative of the Community Surface Dynamics Modeling System (2020--present)
 	\item Topic Editor for Geosciences, Journal of Open Source Software (2019--present)
 	\item Mentor, Research Experience for Community College Students (2018--2020)
-	\item Member, American Geophysical Union Hydrologic Uncertainty Technical Committee (February 2019--present).
-	\item Reviewer for JGR-Earth Surface, Geomorphology, Natural Hazards, Earth Surface Processes and Landforms, Journal of Open Source Software, Journal of Flood Risk Management, Proceedings of the National Academy of Sciences, Earth Surface Dynamics
+	\item Member, American Geophysical Union Hydrologic Uncertainty Technical Committee (February 2019--present)
+	\item Reviewer for
+		Earth Surface Dynamics,
+		Earth Surface Processes and Landforms, 
+		Environmental and Engineering Geoscience,
+		JGR-Earth Surface, Geomorphology, 
+		Journal of Flood Risk Management, 
+		Journal of Open Source Software, 
+		Natural Hazards, 
+		Proceedings of the National Academy of Sciences, 
+		National Science Foundation.
 	\item Member, Geological Society of America membership committee (2015 - 2017)
 \end{outerlist}
 
@@ -780,11 +798,11 @@ Boulder, Colorado
 			>{\raggedright\arraybackslash}p{4in}%
 			}}
 	Languages: & Python (primary), R, fortran \\
-	General Development: & Continuous integration with Travis and Appveyor. Package testing with pytest. Creation of automated documentation using sphinx. Version control and collaborative development using Git. Distribution through PyPI and conda-forge. Bash scripting.\\
-	Scientific Development: & Extensive use of python scientific stack (numpy, scipy, pandas, xarray, matplotlib, jupyter, cython, dask, pytest) and the R tidyverse.\\
+	General Development: & Continuous integration, software testing, automated documentation, and package distribution. \\
+	Scientific Development: & Python scientific stack and the R tidyverse.\\
 	High Performance Computing & Job submission with slurm and torque, environment management, basic platform specific compilation. \\
-	Shallow-water equation simulation codes: & FLO2D, RAMMS, D-CLAW\\
-	General Software:  &  \LaTeX, Matlab, GRASS GIS, QGIS, ArcGIS, Dakota Uncertainty Quantification, Agisoft Photoscan, Cloud Compare, Affinity, Adobe Creative Suite (Illustrator, Photoshop, Premiere, AfterEffects) \\
+	Flow codes: & FLO2D, RAMMS, D-CLAW\\
+	General Software:  &  \LaTeX, Matlab, GRASS GIS, QGIS, ArcGIS, Dakota Uncertainty Quantification, Agisoft Photoscan, Cloud Compare, Affinity, Adobe Creative Suite \\
 \end{tabular}
 \endgroup
 \end{document}
