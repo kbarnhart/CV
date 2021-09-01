@@ -42,7 +42,7 @@
 % ``mimicry'' if necessary.
 \usepackage[shortcuts]{extdash}
 
-
+\usepackage{todonotes}
 \usepackage{comment}
 \usepackage{array}
 \usepackage{booktabs}
@@ -95,7 +95,7 @@
 
 % Provides special list environments and macros to create new ones
 \usepackage[shortlabels]{enumitem}
-
+\setlist[itemize]{itemsep=0pt,parsep=1pt} 
 
 %%%%%%%%% Simpler refsections for CV sections
 %%%%%%%%% (thanks to natbib for inspiration)
@@ -164,7 +164,7 @@
 %%                    \arabic{page}                               % -LP
 %                    \hfill \,}}
 
-\lfoot{Page \arabic{page} of \protect\pageref*{LastPage} -- CV updated \today}
+\lfoot{Page \arabic{page} of \protect\pageref*{LastPage} -- K. R. Barnhart -- CV updated \today}
 
 % Finally, give us PDF bookmarks
 \usepackage{color,hyperref}
@@ -215,7 +215,7 @@
 %
 % Usage: \section{section name}
 \renewcommand{\section}[1]{\pagebreak[3]%
-    \vspace{1.2\baselineskip}%
+    \vspace{0.7\baselineskip}%
     \phantomsection\addcontentsline{toc}{section}{#1}%
     \noindent \hspace{-15pt}{\large\scshape #1}%
     \vspace{0.2\baselineskip}\par
@@ -233,71 +233,6 @@
 
 %%% LISTS
 
-% This macro alters a list by removing some of the space that follows the list
-% (is used by lists below)
-\newcommand*\fixendlist[1]{%
-    \expandafter\let\csname preFixEndListend#1\expandafter\endcsname\csname end#1\endcsname
-    \expandafter\def\csname end#1\endcsname{\csname preFixEndListend#1\endcsname\vspace{-0.6\baselineskip}}}
-
-% These macros help ensure that items in outer-type lists do not get
-% separated from the next line by a page break
-% (they are used by lists below)
-\let\originalItem\item
-\newcommand*\fixouterlist[1]{%
-    \expandafter\let\csname preFixOuterList#1\expandafter\endcsname\csname #1\endcsname
-    \expandafter\def\csname #1\endcsname{\csname preFixOuterList#1\endcsname\let\oldItem\item\def\item{\pagebreak[2]\oldItem}}
-    \expandafter\let\csname preFixOuterListend#1\expandafter\endcsname\csname end#1\endcsname
-    \expandafter\def\csname end#1\endcsname{\let\item\oldItem\csname preFixOuterListend#1\endcsname}}
-\newcommand*\fixinnerlist[1]{%
-    \expandafter\let\csname preFixInnerList#1\expandafter\endcsname\csname #1\endcsname
-    \expandafter\def\csname #1\endcsname{\let\oldItem\item\let\item\originalItem\csname preFixInnerList#1\endcsname}
-    \expandafter\let\csname preFixInnerListend#1\expandafter\endcsname\csname end#1\endcsname
-    \expandafter\def\csname end#1\endcsname{\csname preFixInnerListend#1\endcsname\let\item\oldItem}}
-
-% An itemize-style list with lots of space between items
-%
-% Usage:
-%   \begin{outerlist}
-%       \item ...    % (or \item[] for no bullet)
-%   \end{outerlist}
-\newlist{outerlist}{itemize}{3}
-    \setlist[outerlist]{label=\enskip\textbullet,leftmargin=*,partopsep=0pt,topsep=0pt,itemsep=0pt,}
-    \fixendlist{outerlist}
-    \fixouterlist{outerlist}
-
-% An environment IDENTICAL to outerlist that has better pre-list spacing
-% when used as the first thing in a \section
-%
-% Usage:
-%   \begin{lonelist}
-%       \item ...    % (or \item[] for no bullet)
-%   \end{lonelist}
-\newlist{lonelist}{itemize}{3}
-    \setlist[lonelist]{label=\enskip\textbullet,leftmargin=*,partopsep=0pt,topsep=0pt}
-    \fixendlist{lonelist}
-    \fixouterlist{lonelist}
-
-% An itemize-style list with little space between items
-%
-% Usage:
-%   \begin{innerlist}
-%       \item ...    % (or \item[] for no bullet)
-%   \end{innerlist}
-\newlist{innerlist}{itemize}{3}
-    \setlist[innerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
-    \fixinnerlist{innerlist}
-
-% An environment IDENTICAL to innerlist that has better pre-list spacing
-% when used as the first thing in a \section
-%
-% Usage:
-%   \begin{loneinnerlist}
-%       \item ...    % (or \item[] for no bullet)
-%   \end{loneinnerlist}
-\newlist{loneinnerlist}{itemize}{3}
-    \setlist[loneinnerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
-    \fixendlist{loneinnerlist}
-    \fixinnerlist{loneinnerlist}
 
 %%% EXTRA SPACE
 
@@ -385,7 +320,7 @@
 
 %\bibstyle{}
 
-\makeheading{\hspace{-15pt} {\Large Katherine Barnhart} {\small (she/her)}}
+\makeheading{\hspace{-15pt} {\Large Katherine R. Barnhart} {\small (she/her)}}
 
 \vspace{-15pt}
 \section{Contact Information}
@@ -403,35 +338,47 @@
 	%\textit{Website:}&\href{http://www.katybarnhart.com/}{katybarnhart.com}\\
 \end{tabular}
 
-TODO I develop and apply numerical models to understand the physical processes which shape Earth’s surface, specifically those processes which impact erosion and sedimentation hazards. I use model intercomparison, parameter estimation, and scenario design to determine the relative contributions of different uncertainty sources (for example, model physics representation, boundary conditions, site specific characteristics). 
+%Conducting research studies of landslide hazards with an emphasis on quantifying landslide mobility;
+%Conducting research studies of landslide hazards, including those in recent burn areas, using modern methods in hydrology and geology;
+%Evaluating and compiling complex topographic, geologic, and hydrologic data sets to parameterize landslide runout models;
+%Developing, adapting and applying physically based models to describe the mobility and runout characteristics of landslides;
+%Assessing landslide hazards utilizing principles of hydrology, geology, geomorphology, and rock and soil mechanics; and,
+%Presenting research results orally and in published peer review scientific journals.
+%Conducting field and laboratory investigations to quantify hillslope hydrology and its effect on slope stability;
+%Developing, adapting, and applying physically based models to describe hillslope hydrology related to landslide initiation;
+
+
+% 13: Examples of such experience include planning, executing and reporting on original hydrologic studies or ongoing hydrologic studies requiring a fresh approach to resolve new problems. The complexity of this work typically required extensive modification and adaptation of standard procedures, methods, and techniques, and the development of totally new methods and techniques to address novel or obscure problems for which guidelines or precedents were not substantially applicable. At this level, Hydrologists have extensive knowledge of the principles of hydrology and highly developed ability in their application, and wide latitude for the exercise of independent judgment to perform scientific work of marked difficulty and responsibility.
+\vspace{-5pt}
+I develop and apply physically based models to understand and mitigate the hazards posed by landslides. I have worked on may aspects of landslide science, including hillslope hydrology, slope stability, sediment entrainment, landslide initiation, runout and inundation, mobility characterization, and tsunamigenic landslides. My recent work has focused on burned areas. I generate and integrate complex and disparate field and remotely sensed datasets to evaluate these models. I am a leader in applying prediction-under-uncertainty methods to Earth surface processes. My work requires creative, multi-part study design and pushes the methodological boundaries of model-data comparison. I undertake interdisciplinary collaborations to ensure my work follows the best practices of usable science and meets the needs of end-users. I have a proven track record of publishing and presenting my results (15 first authored and 12 co-authored peer-reviewed publications; 25 first-authored conference presentations; H-index of 11).  
 
 \section{Education}
 
-\begin{outerlist}
-\item \href{http://www.colorado.edu/}{\textbf{University of Colorado Boulder}},
-Boulder, Colorado 
-\begin{innerlist}
+\begin{itemize}
+\item \href{http://www.colorado.edu/}{\textbf{University of Colorado Boulder}}, Boulder, Colorado 
+\begin{itemize}
 \item[] \textit{August 2015,} Ph.D., Geological Sciences, Advisor:
               \href{http://instaar.colorado.edu/~andersrs/}
                    {Robert S.~Anderson}
 \item[] \textit{May 2010,} M.S., Geological Sciences, Advisor:
               \href{http://spot.colorado.edu/~mahank/}
                    {Kevin H.~Mahan}
-\end{innerlist}
+\end{itemize}
 
 \item \href{http://www.princeton.edu/}{\textbf{Princeton University}},
 Princeton, NJ
-\begin{innerlist}
+\begin{itemize}
 \item[] \textit{May 2008,} B.S.E., Civil and Environmental Engineering (Honors) and Geological Engineering Certificate, Advisors:
         \href{http://www.princeton.edu/geosciences/people/display_person.xml?netid=linc}
                    {Lincoln S.~Hollister} and \href{http://www.princeton.edu/cee/people/display_person/?netid=jsmith}
                    {James A. Smith}
-\end{innerlist}
-\end{outerlist}
+\end{itemize}
+\end{itemize}
 
 \section{Professional Experience}
-\textit{See \hyperref[detailedexp]{Detailed Professional Experience} below for specific duties and accomplishments}
-\begin{outerlist}
+\textit{See \hyperref[detailedexp]{Detailed Professional Experience} on page \hyperref[detailedexp]{\pageref{detailedexp}} for specific duties and accomplishments}
+
+\begin{itemize}
 	\item \textit{April 2020--present,} \textbf{Research Civil Engineer} and Mendenhall Fellow, \href{https://www.usgs.gov}{{U.S. Geological Survey}},
 	Geologic Hazards Science Center and Landslide Hazards Program, Golden, Colorado. 
 	Supervisor: 
@@ -456,14 +403,14 @@ Princeton, NJ
 	  {Kevin H.~Mahan}.
 	  \item \textit{August 2007--August 2008,} \textbf{Research Assistant}, \href{https://geosciences.princeton.edu/}{{Princeton University}} Department of Geological Sciences Princeton, New Jersey. Advisor: \href{http://www.princeton.edu/geosciences/people/display_person.xml?netid=linc}{Lincoln S.~Hollister}.
 	  \item \textit{June 2005--August 2005,} \textbf{Research Assistant}, \href{https://geosciences.princeton.edu/}{{University of Washington}} Department of Forestry, Seattle, Washington.  
-\end{outerlist}
+\end{itemize}
 
 \section{Professional Affiliations}
-\begin{outerlist}
+\begin{itemize}
 	\item \textit{May 2020--present, } \href{https://cires.colorado.edu/}{\textbf{CIRES}} \textbf{Research Affiliate}, \href{http://www.colorado.edu/}{{University of Colorado Boulder}},
 Boulder, Colorado.
 \item \textit{March 2020--present, } \textbf{Designated Campus Colleague}, \href{https://www.arizona.edu/}{{University of Arizona}} Department of Geosciences, Tucson, Arizona.
-\end{outerlist}
+\end{itemize}
 %\section{Research Interests}
 %\begin{itemize}[itemsep=-3pt]
 %\item Numerical modeling of geomorphic processes
@@ -490,7 +437,7 @@ Boulder, Colorado.
 
 
 \section{Honors}
-\begin{outerlist}
+\begin{itemize}
 \item USGS STAR Award, 2021
 \item CSDMS Terrestrial Working Group Member Spotlight Award, 2020
 \item USGS Mendenhall Fellowship, 2020
@@ -499,7 +446,7 @@ Boulder, Colorado.
 \item NSF Graduate Research Fellowship Honorable Mention, 2010
 \item W. Taylor Thom Jr. Prize, Princeton Department of Civil Engineering, 2008
 \item Arthur F. Buddington Award, Princeton Department of Geological Sciences, 2008
-\end{outerlist}
+\end{itemize}
 
 
 
@@ -523,7 +470,7 @@ Boulder, Colorado.
 \vspace{-5pt}
 \printbibliography[keyword=publication,heading=none,resetnumbers=true]
 
-\subsection{Data Releases} 
+\subsection{Peer Reviewed Data Releases} 
 \vspace{-5pt}
 \printbibliography[keyword=data,heading=none,resetnumbers=true]
 
@@ -539,7 +486,7 @@ Boulder, Colorado.
 \vspace{-5pt}
 \printbibliography[keyword=Thesis,heading=none,resetnumbers=true]
 
-\subsection{Select Conference Abstracts At End of CV} 
+\subsection{Select Conference Abstracts On Page \hyperref[conferenceabs]{\pageref{conferenceabs}}}
 
 \subsection{Media Coverage} 
 \vspace{-5pt}
@@ -547,7 +494,7 @@ Boulder, Colorado.
 \vspace{-10pt}
 
 %\section{Research Projects}
-%\begin{outerlist}
+%\begin{itemize}
 %\item Effective methods for communicating about Antarctic sea ice. 
 %\item Impact of Pope Francis' Encyclical on acceptance of anthropogenic climate change.
 %\item Constraining the impact of orbital variations on slope-aspect dependent insolation and hillslope processes.
@@ -559,7 +506,7 @@ Boulder, Colorado.
 %%\item Applied satellite-based observations of ground temperature to subsurface permafrost development
 %\item Petrology, structural geology, and monazite geochronology of Proterozoic rocks of southwestern Montana.
 %\item Petrology and mictrostructure of Proterozoic rocks of Northern New Mexico.
-%\end{outerlist}
+%\end{itemize}
 
 %\pagebreak
 \section{Funding Awarded}
@@ -571,7 +518,7 @@ Boulder, Colorado.
 %	PI: K. Barnhart (with Lead PI A. Wickert (University of Minnesota) and CO-PI M. Hermes, University of Minnesota)
 %\end{itemize}
 %\subsection{Awarded}
-\begin{outerlist}
+\begin{itemize}
 	\item 
 	USGS Risk Community of Practice\\ 
 	\textit{User needs assessment of southern California emergency managers to improve post-fire debris flow inundation hazard products}\\
@@ -583,7 +530,7 @@ Boulder, Colorado.
 	NSF-EAR Geomorphology and Land Use Dynamics\\ 
 	\textit{Collaborative Research: Steepland dynamics and steady-state forms resulting from debris flows}\\
 	May 2020--April 2023\\
-	CO-PI: K. Barnhart (with Lead PI L. McGuire (University of Arizona) and CO-PI S. McCoy (University of Nevada Reno))
+	CO-PI: K. Barnhart (with Lead PI L. McGuire (University of Arizona) and CO-PI S. McCoy (University of Nevada Reno)). UA portion \$315k, UNR portion \$206k.
 	
 	\item NSF-EAR Geodynamics\\ 
 	\textit{Collaborative Research: Building open source modeling infrastructure to explore the co-evolution of Earth's surface and interior}\\
@@ -615,7 +562,7 @@ Boulder, Colorado.
 	\\August 2012--October 2015, \$91k 
 	\\PI R.S. Anderson
 	
-\end{outerlist}
+\end{itemize}
 
 \section{Lectures}
 \subsection{Invited Talks} 
@@ -624,8 +571,9 @@ Boulder, Colorado.
 	\item[2021]
 	\begin{enumerate}[itemsep=0pt]
 		\item[] Modeling Collaboratory for Subduction Zone Research Coordination Network, virtual
-		\item[] AGU Fall Meeting
+		\item[] AGU Fall Meeting (x2)
 		\item[] GSA Fall Meeting
+		\item [] National Tsunami Hazard Mitigation Program
 	\end{enumerate}
 	\item[2019]
 	\begin{enumerate}[itemsep=0pt]
@@ -663,17 +611,17 @@ Boulder, Colorado.
 	\end{enumerate}
 \end{enumerate}
 
-%\section{Field Efforts}
-%\begin{outerlist}
-% Tadpole
-% Chalk Cliffs
-%\item \textbf{Niwot Ridge, CO} (2014--2015) Development and deployment of a cold-region soil sensor network (with Andy Wickert). 
-%\item \textbf{Kennicott Glacier, AK} (2012--2014) Measuring the motion, subglacial hydrology, and proglacial lake development of the Kennicott Glacier, Alaska (with Bob Anderson, Billy Armstrong and Andy Wickert). 
-%\item \textbf{Beaufort Sea Coast, AK} (2011) Monitoring the processes of rapid coastal erosion of the Beaufort Sea coast, Alaska (with Irina Overeem, Bob Anderson, Frank Urban, Gary Clow, and Cameron Wobus).
-%\item \textbf{Southwest Greenland Margin} (2011) Gauging rivers and fjord oceanography to develop novel methods of river discharge estimation (with Irina Overeem and Ben Hudson). 
-%\item \textbf{Southwestern Montana} (2008--2010) Field mapping of structural geology and petrology (with Kevin Mahan, Becky Flowers, and Alexis Ault). 
-%\item \textbf{Northern New Mexico} (2007--2009) Field mapping of structural geology and petrology (with Linc Hollister and Pam Walsh). 
-%\end{outerlist}
+\section{Field Efforts}
+\begin{itemize}
+\item \textbf{Tadpole Fire, NM} (2021) Hillslope hydrology, debris flow deposit mapping, and development of a large woody debris protocol (with Francis Rengers, Ann Youberg, Olivia Hoch, Alex Gorr, Rebecca Beers, Luke McGuire, and Dan Cadol).
+\item \textbf{Chalk Cliffs, CO} (2016--2018) Repeat UAS surveys of debris flow basins (with Francis Rengers and Greg Tucker).
+\item \textbf{Niwot Ridge, CO} (2014--2015) Development and deployment of a cold-region soil sensor network (with Andy Wickert). 
+\item \textbf{Kennicott Glacier, AK} (2012--2014) Measuring the motion, subglacial hydrology, and proglacial lake development of the Kennicott Glacier, Alaska (with Bob Anderson, Billy Armstrong and Andy Wickert). 
+\item \textbf{Beaufort Sea Coast, AK} (2011) Monitoring the processes of rapid coastal erosion of the Beaufort Sea coast, Alaska (with Irina Overeem, Bob Anderson, Frank Urban, Gary Clow, and Cameron Wobus).
+\item \textbf{Southwest Greenland Margin} (2011) Gauging rivers and fjord oceanography to develop novel methods of river discharge estimation (with Irina Overeem and Ben Hudson). 
+\item \textbf{Southwestern Montana} (2008--2010) Field mapping of structural geology and petrology (with Kevin Mahan, Becky Flowers, and Alexis Ault). 
+\item \textbf{Northern New Mexico} (2007--2009) Field mapping of structural geology and petrology (with Linc Hollister and Pam Walsh). 
+\end{itemize}
 
 
 %\section{Small Grants}
@@ -685,7 +633,7 @@ Boulder, Colorado.
 %\end{itemize}
 
 \section{Software Packages}
-\begin{outerlist}
+\begin{itemize}
 	\item[]\href{http://landlab.github.io/#/}{\textbf{\ttfamily landlab}} (October 2016--present)\\
 	{\ttfamily landlab} is a python package for the creation and implementation of two dimensional numerical models. Development is focused on, but not limited to, Earth surface processes. 
 	
@@ -711,13 +659,13 @@ Boulder, Colorado.
 	\item[]\href{https://github.com/TerrainBento/umami}{\textbf{\ttfamily umami}} (January 2017--present)\\
 	{\ttfamily umami} is a python package for model-data comparison in andscape evolution modeling. 	
 	I am the the primary developer of {\ttfamily umami}. 
-\end{outerlist}
+\end{itemize}
 
 \section{Students Supervised}
-\begin{outerlist}
+\begin{itemize}
 	\item David Litwin, Johns Hopkins University, 2019--present
 	\item Jessica Ghent, Front Range Community College, University of Colorado at Boulder, 2018--2020
-%				  \begin{innerlist}
+%				  \begin{itemize}
 %				  \item
 %				  \textit{The impact of ground control points on Structure from Motion scene uncertainty:}
 %				  Project for the Research Experience for Community College Students program. Analysis of the impact of ground control point placement at the Chalk Cliffs debris flow site.  Presented this work at the 2018 American Geophysical Union Fall meeting.
@@ -725,40 +673,40 @@ Boulder, Colorado.
 %				  \textit{Modeling of volcanic landscape evolution with Landlab:}
 %				  Creation of a component to create and evolve cinder cones.
 %				  % item Change detection at Sugarloaf?
-%				 \end{innerlist}
+%				 \end{itemize}
 		\item Keely Lawrence, Front Range Community College, University of Colorado at Boulder, 2019--2020
-%	 \begin{innerlist}
+%	 \begin{itemize}
 %	 	\item 
 %	 	\textit{Classification of surface features using a deep convolutional neural network:}
 %	 	Project for the Research Experience for Community College Students program. Created and applied a training data set of pixel-level classified images at the Chalk Cliffs debris flow site using tensorflow.
 %	\item \textit{Historic change detection at Caineville Plateau, Utah:} Use of historic aerial imagery and modern UAS-based imagery to assess topographic change in badlands. 
-%	\end{innerlist}
-\end{outerlist}
+%	\end{itemize}
+\end{itemize}
 
 \section{Graduate Committee Service}
-\begin{outerlist}
+\begin{itemize}
 	\item Sophie Rothman, University of Nevada Reno (primary advisors Joel Scheingross and Scott McCoy), 2020--present
-\end{outerlist}
+\end{itemize}
 
 \section{Organization of Conference Sessions}
-\begin{outerlist}
+\begin{itemize}
 	\item AGU Session 2020: Prediction in geomorphology, 20 years later (with Evan Goldstein, Allison Pfeiffer, and Tyler Doane)
 	\item AGU Session 2015: Mechanistic underpinnings of damage, disruption, and downslope transport of rock and regolith (with Jill Marshall, Greg Stock, and T.C. Hales)
 	\item EGU Session 2015, 2016, 2017: Risks from a changing cryosphere (with Christian Huggel and Jeff Kargel)
 	\item AGU Session 2012: Thermal Control on Weathering, Erosion and Landscape Evolution (with Bob Anderson, Ben Crosby, and Theodore Barnhart)
-\end{outerlist}
+\end{itemize}
 
 
 \section{Other Service}
-\begin{outerlist}
+\begin{itemize}
 	\item Panelist on the AGU EPSP April 2021 seminar ``A discussion on building a supportive research community''.
-	\item USGS Hazard's Mission Area URGE Pod discussion group leader (Jan 2020--present)
-	\item AGU EPSP Wonderful Coffee Hour Coordinator (Jan 2021--present)
-	\item Panelist on the Modeling the Critical Zone Cyberseminar for the  Growing the Critical Zone Research Coordination Network (Feb 2020)
-	\item Co-chair (with Allison Pfieffer) of the Network Sediment Transport Initiative of the Community Surface Dynamics Modeling System (2020--present)
-	\item Topic Editor for Geosciences, Journal of Open Source Software (2019--present)
-	\item Mentor, Research Experience for Community College Students (2018--2020)
-	\item Member, American Geophysical Union Hydrologic Uncertainty Technical Committee (February 2019--present)
+	\item USGS Hazard's Mission Area URGE Pod discussion group leader (Jan 2020--present).
+	\item AGU EPSP Wonderful Coffee Hour Coordinator (Jan 2021--present).
+	\item Panelist on the Modeling the Critical Zone Cyberseminar for the  Growing the Critical Zone Research Coordination Network (Feb 2020).
+	\item Co-chair (with Allison Pfieffer) of the Network Sediment Transport Initiative of the Community Surface Dynamics Modeling System (2020--present).
+	\item Topic Editor for Geosciences, Journal of Open Source Software (2019--present).
+	\item Mentor, Research Experience for Community College Students (2018--2020).
+	\item Member, American Geophysical Union Hydrologic Uncertainty Technical Committee (February 2019--present).
 	\item Reviewer for Earth Surface Dynamics,
 		Earth Surface Processes and Landforms, 
 		Environmental and Engineering Geoscience,
@@ -768,29 +716,29 @@ Boulder, Colorado.
 		Natural Hazards, 
 		Proceedings of the National Academy of Sciences, 
 		National Science Foundation.
-	\item Member, Geological Society of America membership committee (2015 - 2017)
-\end{outerlist}
+	\item Member, Geological Society of America membership committee (2015 - 2017).
+\end{itemize}
 
 
 \section{Teaching Experience}
-\begin{outerlist}
+\begin{itemize}
 	\item \textbf{Workshop instructor}
-	\begin{innerlist}
+	\begin{itemize}
 		\item Morphodynamic modeling with Landlab and PyMT (River, Coastal and Estuarine Morphodynamics 2019)
 		\item Model sensitivity analysis and optimization with Dakota and Landlab (CSDMS 2017, 2018, 2019)
 		\item Science communication for graduate students (Summer 2015)
-	\end{innerlist}
+	\end{itemize}
 	\item \textbf{Laboratory Instructor}, University of Colorado at Boulder
-	\begin{innerlist}
+	\begin{itemize}
 		\item GEOL~3120: Structural Geology (Fall~2008 and 2008)
 		\item GEOL~1030: Introduction to Geology Laboratory (Spring~2009)
-	\end{innerlist}
+	\end{itemize}
 	\item \textbf{Outdoor leadership instructor}, Princeton University
-	\begin{innerlist}
+	\begin{itemize}
 		\item Basic outdoor skills and rock climbing (2006-2008)
 		\item Wilderness first aid (2006-2008)
-	\end{innerlist}
-\end{outerlist}
+	\end{itemize}
+\end{itemize}
 
 \section{Professional Membership}
 \begin{itemize}[itemsep=-3pt]
@@ -806,7 +754,24 @@ Boulder, Colorado.
 \end{itemize}
 
 
-\section{Skills and Training}
+\section{Skills and Trainings}
+
+\subsection{Trainings}
+\begin{itemize}
+	\item 2017 University of Colorado UAS Ground School
+	\item 2018 Tom Noble Photogrammetry
+	\item 2021 Wilderness Remote First Aid
+\end{itemize}
+
+\subsection{Field Skills}
+\begin{itemize}
+	\item Standard methods in geomorphic, hydrologic, and landslide studies.
+	\item UAS survey flight design and flight management (as pilot).
+	\item Designing, implementing, and evaluating structure-from-motion (SfM) photogrammetry projects. Including building SfM models from both modern and historical datasets.
+	\item Deploying environmental monitoring equipment (for example, stream and lake gaging, weather stations, soil temperature and moisture sensors).
+	\item Real time kinematic differential GPS surveying and troubleshooting, including remote station installation and maintenance. 
+	\item Structural geology mapping and sampling.
+\end{itemize}
 
 \subsection{Computer Skills}
 \begingroup
@@ -829,103 +794,180 @@ Boulder, Colorado.
 	Typesetting:  &  \LaTeX,  \\
 \end{tabular}
 \endgroup
-\\
-\subsection{Training}
-TODO
-University of Colorado UAS Ground School
-Tom Noble Photogrammetry
 
-Wilderness Remote First Aid
 
-\subsection{Field Skills}
-TODO
 
 \section{Professional References}
-Jason Kean
-Dennis Staley
-Greg
-Bob
-Mary
-Nicole?
+\begin{itemize}
+	\item Jason Kean, U.S. Geological Survey
+	\begin{itemize}
+		\item  jwkean@usgs.gov
+		\item (303) 273-8608
+	\end{itemize}
+	\item Gregory Tucker, University of Colorado
+	\begin{itemize} 
+		\item gtucker@colorado.edu 
+		\item 303-492-6985
+	\end{itemize}
+	\item Mary Hill
+	\begin{itemize}
+		\item mchill@ku.edu 
+		\item 785-864-2728
+	\end{itemize}
+	\item Robert Anderson, University of Colorado
+	\begin{itemize}
+		\item robert.s.anderson@colorado.edu 
+		\item (303) 735-8169
+	\end{itemize}
+\end{itemize}
 
 \section{Detailed Professional Experience}\label{detailedexp}
+
+%Conducting research studies of landslide hazards with an emphasis on quantifying landslide mobility;
+%Conducting research studies of landslide hazards, including those in recent burn areas, using modern methods in hydrology and geology;
+%Evaluating and compiling complex topographic, geologic, and hydrologic data sets to parameterize landslide runout models;
+%Developing, adapting and applying physically based models to describe the mobility and runout characteristics of landslides;
+%Assessing landslide hazards utilizing principles of hydrology, geology, geomorphology, and rock and soil mechanics; and,
+%Presenting research results orally and in published peer review scientific journals.
+%Conducting field and laboratory investigations to quantify hillslope hydrology and its effect on slope stability;
+%Developing, adapting, and applying physically based models to describe hillslope hydrology related to landslide initiation;
+
+
+% 13: Examples of such experience include planning, executing and reporting on original hydrologic studies or ongoing hydrologic studies requiring a fresh approach to resolve new problems. The complexity of this work typically required extensive modification and adaptation of standard procedures, methods, and techniques, and the development of totally new methods and techniques to address novel or obscure problems for which guidelines or precedents were not substantially applicable. At this level, Hydrologists have extensive knowledge of the principles of hydrology and highly developed ability in their application, and wide latitude for the exercise of independent judgment to perform scientific work of marked difficulty and responsibility.
+
+%Independently conceived of, planned, and executed all aspects of this study
 \textbf{Research Civil Engineer} and Mendenhall Fellow, \href{https://www.usgs.gov}{{U.S. Geological Survey}}, Geologic Hazards Science Center and Landslide Hazards Program, Golden, Colorado. 
 
 \textit{April 2020--present,} 40 hours/week, GS-0810-12
 
-\begin{outerlist}
-\item STUFF
-\item STUFF
-\end{outerlist} 
+\begin{itemize}
+
+\item Independently designed, implemented, and wrote up a multi-model assessment of debris flow runout models along the five major flow paths of the 2018 Montecito Debris Flow Event. This study evaluates multiple candidate models as the first step towards creating a debris flow inundation and runout hazard assessment product. Presently this work is in review at \textit{Journal of Geophysical Research: Earth Surface} and I have been invited to present on it at the 2021 GSA Fall meeting. Application of this type of multi-model calibration and comparison has never been done before for debris flow runout models in a post-fire setting.
+\item Independently learned the theoretical basis for, and operational capacity to use three debris flow runout models (FLO2D, RAMMS, and D-Claw).   
+\item Developed a python-language software package to manage initialization and postprocessing of FLO2D, RAMMS, and D-Claw simulations for postfire debris flow application. Importantly, this software couples output from the current Staley and others debris flow likelihood model and the Gartner and others debris flow volume model to initialize debris flow runout models. 
+\item Conceived of and implemented a multi-scenario study of tsunamigenic landslides hazards at Barry Arm fjord. This study demonstrated that the worst case hazard posed by the Barry Arm unstable slope is five times lower than previously thought. This result has tremendous implications for local emergency management and economic activities. It was published as an Office of Management and Budget Influential Scientific Information \textit{Open-File Report}. 
+\item Independently undertook core improvements to the D-Claw and Clawpack code bases, including upgrading the codebase to python version 3, creating VTK formatted output, permitting simulations to automatically stop based on a momentum criterion, and a variety of minor bugfixes.  
+\item Conceived of and wrote a successful Risk Community of Practice grant to fund an user needs assessment of postfire debris flow runout users. This study funds a Social Scientist and a student intern to work with me to develop an conduct unstructured interviews of emergency managers, floodplain engineers, and weather service professionals. Because we do not know the needs of different user groups for post-fire debris flow landslide modeling, it is important to understand these needs \textit{while research is in its early phases}. The results of this work will inform research in inundation and runout modeling by describing the current needs of end-users. 
+\item Supported other staff scientists in the Landslide Hazards Program Postfire Debris Flow task based on my expertise in SfM postprocessing and rainfall data analysis.  
+\item Conducted field work on post-fire debris flows at the Tadpole fire, including hillslope hydrologic studies and development of a large woody debris protocol suitable for perennial streams and post-fire debris flow applications. 
+\item Provided guidance on landslide modeling approaches to state geologic surveys.
+\item Provided guidance on interpreting the results of my work to scientists at partner federal agencies. 
+\item Co-led (with Nadine Reitman) the Geologic Hazards Science Center Unlearning Racism in Geosciences activities. During the formal URGE curriculum (3 months) this included leading bi-weekly discussion groups and coordinating weekly with leaders from other science centers. After the end of formal URGE activities we continued cross-center coordination and formed a task force to draft short term priorities for the center. These activities led to joint receipt of a STAR Award.
+\item Presented at AGU 2020, two invited talks at AGU 2021, and one invited talk at GSA 2021.
+\end{itemize} 
 
 \textbf{National Science Foundation EAR Postdoctoral Fellow}, \href{http://www.colorado.edu/}{{University of Colorado Boulder}} Department of Geological Sciences,
 Boulder, Colorado. 
 
 \textit{April 2018--March 2020,}  40 hours/week 
 
-\begin{outerlist}
-\item 
-\item
-\end{outerlist} 
+\begin{itemize}
+\item Independently designed, implemented and led a study of event and decadal-scale topographic change at the Chalk Cliffs debris flow site. This study resulted in 10 surveys documenting sediment entrainment and deposition from individual debris flow events and wintertime sediment production. Preliminary results from this work were published as part of the \textit{Debris Flow Hazard Mitigation} conference. More extensive results are presently being analyzed and will serve to test models of landslide initiation---including hydrologic conditions at initiation and landslide sediment transport. 
+\item Collaborated with scientists at Western Washington University and Virgina Tech to develop and implement a numerical model of in-channel sediment transport. This work was published in the \textit{Journal of Open Source Software}. This software is currently being used to evaluate the hazard posed by deposits of postfire debris flow sediment in river channels.  
+\item Led the writing of an NSF Geoinformatics proposal approved for funding to support computational parallelization of models for geodynamic hazards. I gave up my Lead PI role at the University of Colorado and was forced to withdraw the proposal because I moved the USGS.
+\item Collaborated on an NSF Geomorphology and Land Use Dynamics proposal approved for funding on the role of debris flows in the evolution of steep topography. I gave up my PI-role at the University of Colorado to join the USGS. 
+\item Developed and led clinics on sensitivity analysis at the CSDMS Annual Meeting. 
+\item Was invited to join the editorial board of the \textit{Journal of Open Source Software} in recognition of my standing as a contributor to open source software in the as a topical editor covering geoscientific software, a position I continue to hold.
+\item Invited to give a keynote and serve on the white paper writing team at the Coupling Tectonic and Surface Processes NSF workshop. This workshop was convened to establish the community assessment of high priorities for NSF funding.  
+\item Independently designed, implemented, and led the major version changes of the Landlab software, including revising key elements of the core model concept and vastly expanding the documentation. This was published in \textit{Earth Surface Dynamics}. 
+\item Independently designed, implemented, and led a study conceptualizing, performing sensitivity analysis, validating, and then making predictions of erosion and sedimentation hazard adjacent to a nuclear waste reprocessing facility using 34 alternative models. These models---developed specifically for this project---couple hillslope and channel hydrology with geomorphic sediment transport to predict how the topographic surface evolves. This unprecedented study provided the first ever predictions under uncertainty for long term geomorphic hazards. It also represented the largest multi-model comparison for geomorphic processes. This multi-phase project was published in four parts in the \textit{Journal of Geophysical Research: Earth Surface}.
+\item Collaborated with Applied Mathematics department at the University of Colorado. Using data I collected of debris flow processes at Chalk Cliffs Colorado, they developed two novel statistical methods for model-data comparison of spatially distributed datasets. These methods were published as two papers in \textit{Mathematical Geosciences}. This work supported the core of the PhD dissertation of Ashton Wiens (supervised by Will Kleiber). 
+\item Collaborated on a study using Cellular Automaton models of vegetation, fire, and hillslope hydrology to identify necessary tipping points for woody plant encroachment. Under review at \textit{Water Resources Research}. 
+\item Collaborated on a study showing the utility of Knowledge Infrastructure for scientific efforts. Published in \textit{Environmental Modeling and Software}.
+\item Collaborated on a study which used landscape evolution models to demonstrate when and where offset channels are faithful representations of earthquake slip. Published in the \textit{Journal of Geophysical Research: Solid Earth}.
+\item Mentored Jess Ghent, first as a community college student, then as an undergraduate student. Jess evaluated the uncertainty characteristics of SfM point clouds and identified optimal numbers of ground control points. 
+\item Mentored Keely Lawrence, first as a community college student, then as an undergraduate student. Keely applied convolutional neural networks to pixel-level image segmentation in order to classify bedrock and colluvium in debris flow channel imagery.
+\item Mentored David Litwin, PhD student at Johns Hopkins, on improving the representation of surface and shallow subsurface hydrology in models of long term landscape evolution. We developed and implemented a model of shallow subsurface hydrology designed to represent the transition between hillslope and channel hydrology. This model was published in the \textit{Journal of Open Source Software}. We then applied this model to show the non-dimensional properties of landscapes under a variety of hydrologic conditions, demonstrating the links between hydrologic architecture and geomorphic process. This application is under review in the \textit{Journal of Geophysical Research: Earth Surface}.
+\item Independently conceptualized and proposed a study to reduce uncertainty in debris flow runout modeling, which was funded as a USGS Mendenhall fellowship. This permitted continued support of the work on debris flow processes I started as an NSF EAR postdoc. 
+\item Based on expertise in applying uncertainty quantification methods to geomorphic problems, I was asked to serve on the American Geophysical Union Hydrologic Sciences Section Uncertainty Quantification Technical Committee. 
+\item Attended and presented at the 2018 and 2019 American Geophysical Union Fall Meeting. 
+\end{itemize} 
 	
 \href{https://cires.colorado.edu/}{\textbf{CIRES}} \textbf{Research Associate},\href{http://www.colorado.edu/}{{University of Colorado Boulder}}, Boulder, Colorado. 
 
 \textit{October 2016--March 2018,}  40 hours/week
  
-\begin{outerlist}
-\item 
-\item
-\end{outerlist} 
+\begin{itemize}
+\item Led a team of seven people in developing and applying 34 alternative models for erosion and sedimentation hazards adjacent to a nuclear waste site. This work eventually led to a white paper for the Department of Energy and five peer reviewed publications. In this work I demonstrated one of the first prediction under uncertainty studies in long term erosion and sedimentation hazards.
+\item Independently designed, implemented and led development of the Landlab software package, including overhauling the core elements representing surface hydrology and adding the capability to represent variable rock types. This latter element led to publications in \textit{The Journal of Open Source Software}.
+\item Published the 34 alternative models used for prediction of erosion and sedimentation hazards in \textit{Geoscientfic Model Development}. These models combine hillslope and channel hydrology with sediment transport on hillslopes, channels, and by landsliding to make predictions about how the topographic surface evolves through time. 
+\item Collaborated to develop the theoretical basis and numerical implementation of a combined sediment transport and bedrock erosion model. This was published in \textit{Geoscientific Model Development}.
+\item Independently designed, implemented and led the creation of a new tool to support model data comparison for erosion and sedimentation hazards used to evaluate predictions of erosion of nuclear waste sites. Published in the \textit{Journal of Open Source Software}.
+\item Made calculations of solar radiance over geologic time which supported interpretation of soil and critical zone architecture. Published in an \textit{AGU Geophysical Monograph}. 
+\item Develop and led clinics on sensitivity analysis and calibration using Dakota at the CSDMS Annual Meeting. 
+\item Attended and presented at the 2016 and 2017 American Geophysical Union Fall Meeting. 
+\end{itemize} 
 
 \textbf{William Henrich Distinguished Postdoctoral Fellow}, \href{http://www.annenbergpublicpolicycenter.org/}{{Annenberg Public Policy Center}}, \href{http://www.upenn.edu}{{University of Pennsylvania}}, Philadelphia, Pennsylvania. 
 
 \textit{September 2015--August 2016, }  40 hours/week 
 
-\begin{outerlist}
-\item 
-\item
-\end{outerlist} 
+\begin{itemize}
+\item Joined an interdisciplinary team of researchers as the only physical scientist doing research on effective methods to communicate about science. 
+\item Independently designed, implemented, and led a study of adult American's perceptions of Arctic and Antarctic sea ice.
+\item Joined the Geological Society of America Membership and Fellowship Committee.
+\end{itemize} 
+
 
 \textbf{NASA Earth and Space Science Fellow}, \href{http://www.colorado.edu/}{{University of Colorado Boulder}} Department of Geological Sciences, Boulder, Colorado.
 	
 \textit{August 2012--August 2015,} 40 hours/week 
 
-\begin{outerlist}
-\item 
-\item
-\end{outerlist} 
+\begin{itemize}
+\item Independently wrote a successful NASA Earth and Space Science Fellowship grant which funded my research for 3 years. 
+\item Conducted a remote sensing study connecting field and satellite-based observations of permafrost temperature. 
+\item Conducted field work (2+ months) monitoring glacial movement with GPS and hydrologic system monitoring on the Kennicott Glacier.
+\item Independently designed, built, and deployed environmental sensors for hillslope hydrology on Niwot Ridge, CO. Sensors included soil moisture, temperature, and heave. 
+\item Designed and implemented a numerical model for Arctic coastal slope stability and erosion. This model was novel in that it treated the slope stability of ice-rich material, susceptible to both gravitational instability, but also material removal by warm ocean water. Published the application of this model to Drew Point, AK in the \textit{Journal of Geophysical Research: Earth Surface}.
+\item Collaborated with other graduate students to design and implement a study documenting the preservation of stratigraphy based on laboratory experiments. Published this study the \textit{Journal of Geophysical Research: Earth Surface}.
+\item Integrated satellite-based observations of sea ice change with rates of Arctic coastal erosion and showed that coastal erosion rates are a function of sea ice free duration and permafrost ice content. This work was published in \textit{The Cryosphere}.
+\item Applied a novel statistical method to ensemble climate model results to demonstrate the points in space and time where modern sea ice concentration is no longer equivalent to pre-industrial warming patterns. Published this work in \textit{Nature Climate Change}.
+\item Combined analysis of sea ice change with Greenlandic delta extent to document that ice sheet melt is associated with delta front propagation. This led to a co-authored publication in \textit{Nature}.
+\item Attended and presented at the 2012, 2013, 2014, and 2015 American Geophysical Union Fall Meeting. 
+\end{itemize} 
 
 \textbf{Graduate Research Assistant}, \href{http://www.colorado.edu/}{{University of Colorado Boulder}} Department of Geological Sciences, Boulder, Colorado.
 
 \textit{August 2008--August 2012,} 40 hours/week 
 
-\begin{outerlist}
-\item 
-\item
-\end{outerlist} 
+\begin{itemize}
+\item Conducted sample collection and structural geology mapping for two field seasons in the Madison Range, MT.
+\item Prepared and analyzed thin section samples using electron microprobe methods, including monazite dating.
+\item Presented results at the Geological Society of America fall meeting. 
+\item Independently designed and implemented a study documenting the timing and mechanisms of enigmatic high velocity lower crust formation. Results of this study were published results in \textit{Geosphere}. 
+\item My electron microprobe analyses supported a co-authored publication documenting billion-year timescale crustal exhumation which was published in \textit{Science}.
+\item Taught introductory geology and structural geology labs.
+\item Conducted field work in Alaska and Greenland, measuring environmental conditions and geomorphic processes.
+\item Wrote a successful NSF Grant (PI R.S. Anderson) on monitoring of Arctic permafrost. 
+\item Attended and presented at the 2010 and 2011 American Geophysical Union Fall Meeting.  
+\item Attended and presented at the 2010 and 2011 Geological Society of America Fall Meeting. 
+\end{itemize} 
 
-\textbf{Research Assistant}, \href{https://geosciences.princeton.edu/}{{Princeton University}} Department of Geological Sciences Princeton, New Jersey.
+\textbf{Research Assistant}, \href{https://geosciences.princeton.edu/}{{Princeton University}} Department of Geological Sciences, Princeton, New Jersey.
 
 \textit{August 2007--August 2008,}  40 hours/week 
 
-\begin{outerlist}
-\item 
-\item
-\end{outerlist} 
+\begin{itemize}
+\item Conducted metamorphic petrology research on samples collected from Northern New Mexico.
+\item Prepared and analyzed thin section samples using electron microprobe methods.
+\item Conducted structural geology mapping and sample collection in Northern New Mexico.
+\item Results formed the basis for Senior Thesis.
+\item Independently designed and implemented a study documenting isothermal decompression at 1.4 GA in Northern New Mexico. This study addressed an outstanding problem in regional tectonics. Results were published in \textit{The Journal of Geology}.
+\end{itemize} 
+
 
 \textbf{Research Assistant}, \href{https://geosciences.princeton.edu/}{{University of Washington}} Department of Forestry, Seattle, Washington.
 	
 \textit{June 2005--August 2005,}   40 hours/week  
 
-\begin{outerlist}
-\item 
-\item
-\end{outerlist}
+\begin{itemize}
+\item Conducted forest vegetation surveys, including establishing plots with total station.
+\end{itemize}
 
 
 
-\section{Select Conference Abstracts}
-\vspace{-5pt}
+\section{Select Conference Abstracts}\label{conferenceabs}
+
 \printbibliography[keyword=Conference,heading=none,resetnumbers=true]
 
 \end{document}
